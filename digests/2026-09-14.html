@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AIニュースダイジェスト 2026-09-14</title>
+<style>
+  :root {
+    --bg: #0b0e13; --surface: #141a22; --surface-2: #1a222d;
+    --ink: #eef2f6; --muted: #98a4b3; --line: #232c38; --brand: #7c8cff;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font-family: system-ui, -apple-system, "Segoe UI", "Hiragino Kaku Gothic ProN",
+      "Yu Gothic", Meiryo, sans-serif;
+    line-height: 1.7; -webkit-font-smoothing: antialiased;
+    background-image:
+      radial-gradient(900px 500px at 100% -10%, rgba(124,140,255,.10), transparent),
+      radial-gradient(700px 400px at -10% 0%, rgba(34,211,238,.06), transparent);
+    background-attachment: fixed;
+  }
+  a { color: inherit; text-decoration: none; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px 96px; }
+
+  /* ---- Masthead ---- */
+  header.bar {
+    position: sticky; top: 0; z-index: 20;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 24px; background: rgba(11,14,19,.82);
+    backdrop-filter: saturate(140%) blur(12px);
+    border-bottom: 1px solid var(--line);
+  }
+  .logo { display: flex; align-items: center; gap: 10px; font-weight: 800;
+    letter-spacing: .04em; font-size: 17px; }
+  .logo .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--brand);
+    box-shadow: 0 0 16px var(--brand); }
+  .logo small { color: var(--muted); font-weight: 600; letter-spacing: .28em;
+    font-size: 11px; }
+  .bar .date { color: var(--muted); font-size: 13px; font-variant-numeric: tabular-nums;
+    display: flex; align-items: center; gap: 12px; }
+  .bar .date b { color: var(--ink); }
+
+  /* ---- Lead ---- */
+  .lead { padding: 52px 0 8px; }
+  .lead .kicker { color: var(--brand); font-weight: 700; letter-spacing: .3em;
+    font-size: 12px; text-transform: uppercase; }
+  .lead h1 { margin: 12px 0 0; font-size: clamp(30px, 5.2vw, 52px); font-weight: 850;
+    letter-spacing: .01em; line-height: 1.15; }
+
+  /* ---- Hero ---- */
+  .hero-wrap { display: grid; gap: 20px; margin: 34px 0 12px; }
+  @media (min-width: 860px) { .hero-wrap { grid-template-columns: 1fr 1fr; } }
+  article.hero {
+    display: flex; flex-direction: column; overflow: hidden;
+    background: var(--surface); border: 1px solid var(--line); border-radius: 18px;
+    transition: transform .18s ease, border-color .18s ease;
+  }
+  article.hero:hover { transform: translateY(-3px); border-color: var(--accent); }
+  .hero-art {
+    height: 150px; display: flex; align-items: center; justify-content: center;
+    font-size: 62px;
+    background:
+      radial-gradient(120% 120% at 20% 0%, color-mix(in srgb, var(--accent) 55%, transparent), transparent 60%),
+      linear-gradient(135deg, color-mix(in srgb, var(--accent) 30%, #0b0e13), #0b0e13);
+    border-bottom: 1px solid var(--line);
+  }
+  .hero-art span { filter: drop-shadow(0 6px 18px rgba(0,0,0,.5)); }
+  .hero-body { padding: 22px 24px 24px; }
+  article.hero h2 { margin: 12px 0 10px; font-size: clamp(20px, 2.4vw, 26px);
+    font-weight: 800; line-height: 1.35; }
+  article.hero p { margin: 0 0 16px; color: var(--muted); font-size: 15px; }
+
+  /* ---- Tag ---- */
+  .tag { display: inline-flex; align-items: center; gap: 6px; font-size: 11px;
+    font-weight: 800; letter-spacing: .12em; color: var(--accent);
+    background: color-mix(in srgb, var(--accent) 14%, transparent);
+    border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+    padding: 4px 10px; border-radius: 999px; }
+
+  /* ---- Feed grid ---- */
+  .feed { margin-top: 52px; }
+  .feed-head { display: flex; align-items: baseline; gap: 14px;
+    padding-bottom: 16px; margin-bottom: 26px; border-bottom: 1px solid var(--line); }
+  .feed-head h2 { margin: 0; font-size: 20px; font-weight: 800; }
+  .feed-head span { color: var(--muted); font-size: 13px; }
+  /* Masonry-style columns: each card sizes to its full content, no truncation. */
+  .grid { columns: 1; column-gap: 20px; }
+  @media (min-width: 760px) { .grid { columns: 2; } }
+
+  article.card {
+    display: flex; flex-direction: column; position: relative;
+    break-inside: avoid; margin: 0 0 20px;
+    background: var(--surface); border: 1px solid var(--line); border-radius: 16px;
+    padding: 22px 22px 20px; transition: transform .16s ease, border-color .16s ease,
+      background .16s ease;
+  }
+  article.card::before {
+    content: ""; position: absolute; inset: 0 auto 0 0; width: 3px;
+    border-radius: 16px 0 0 16px; background: var(--accent); opacity: 0;
+    transition: opacity .16s ease;
+  }
+  article.card:hover { transform: translateY(-3px); border-color: var(--accent);
+    background: var(--surface-2); }
+  article.card:hover::before { opacity: .9; }
+  article.card h3 { margin: 12px 0 10px; font-size: 16.5px; font-weight: 700;
+    line-height: 1.5; }
+  article.card p { margin: 0 0 16px; color: var(--muted); font-size: 14px;
+    line-height: 1.8; }
+
+  /* ---- Sources ---- */
+  .srcs { margin-top: 4px; display: flex; flex-wrap: wrap; gap: 6px; }
+  .src { font-size: 12px; color: var(--muted); border: 1px solid var(--line);
+    border-radius: 7px; padding: 3px 9px; transition: color .14s, border-color .14s; }
+  .src::before { content: "↗ "; color: var(--accent); }
+  .src:hover { color: var(--ink); border-color: var(--accent); }
+
+  footer { margin-top: 72px; padding-top: 26px; border-top: 1px solid var(--line);
+    text-align: center; color: var(--muted); font-size: 12px; }
+</style>
+</head>
+<body>
+  <header class="bar">
+    <div class="logo"><span class="dot"></span>AI NEWS <small>DIGEST</small></div>
+    <div class="date"><b>2026.09.14（月）</b><span>14 topics</span></div>
+  </header>
+  <div class="wrap">
+    <div class="lead">
+      <div class="kicker">Daily AI Briefing</div>
+      <h1>AIニュースダイジェスト</h1>
+    </div>
+    <section class="hero-wrap"><article class="hero" style="--accent:#7c8cff"><div class="hero-art"><span>🚀</span></div><div class="hero-body"><span class="tag" style="--accent:#7c8cff">🚀 RELEASE</span><h2>OpenAI、GPT-6 Astraを正式リリース</h2><p>OpenAIは「GPT-6 Astra」を公開した。コーディング、コンピューター操作、長時間エージェントタスク、サイバーセキュリティに特化した企業向け最高性能モデルと位置づけられており、高度な推論・設計判断能力を備える。ChatGPT、Codex、OpenAI APIに加え、Amazon Bedrockでも提供が開始された。実採用事例として、Perplexityが本番システム監視・通信文書作成に活用し人間の介入頻度を大幅削減。CognitionのAIエンジニア「Devin」もAstraを用いてソフトウェアテストを自動化し、コードレビュー工数の削減を実現している。Simon WillisonのLLMツール v0.35でも「gpt-6-astra」として対応済み。</p><div class="srcs"><a class="src" href="https://openai.com/index/gpt-6-astra-next-generation-work" target="_blank" rel="noopener">openai.com</a><a class="src" href="https://www.infoq.com/news/2026/09/openai-gpt6-astra/" target="_blank" rel="noopener">infoq.com</a><a class="src" href="https://aws.amazon.com/blogs/machine-learning/take-on-your-most-ambitious-work-with-gpt-6-astra-on-amazon-bedrock/" target="_blank" rel="noopener">aws.amazon.com</a><a class="src" href="https://simonwillison.net/2026/Sep/7/llm/" target="_blank" rel="noopener">simonwillison.net</a></div></div></article><article class="hero" style="--accent:#7c8cff"><div class="hero-art"><span>🚀</span></div><div class="hero-body"><span class="tag" style="--accent:#7c8cff">🚀 RELEASE</span><h2>AIがミレニアム懸賞問題「ナビエ・ストークス方程式」を解決</h2><p>OpenAIは次世代モデル「Astra-next」が、数学界の未解決難問であるナビエ・ストークス方程式の特異点問題を解いたと発表した。約88時間・1万エージェント・1300億トークン、コスト4000万ドル超を投じた大規模計算による成果で、ミレニアム賞問題史上2例目の解決候補とされる。ニューヨーク・タイムズも同日報道。一方で、NYU数学者トリスタン・バックマスター氏とAnthropicのレバント・アルポゲ氏のAI支援研究を無断利用したとの盗用疑惑が浮上し、功績帰属をめぐる論争に発展している。OpenAIは疑惑を否定している。</p><div class="srcs"><a class="src" href="https://www.latent.space/p/ainews-openai-reports-navier-stokes" target="_blank" rel="noopener">latent.space</a><a class="src" href="https://tldr.tech/ai/2026-09-09" target="_blank" rel="noopener">tldr.tech</a><a class="src" href="https://thezvi.substack.com/p/brand-new-ai-solves-a-millennium" target="_blank" rel="noopener">thezvi.substack.com</a><a class="src" href="https://www.technologyreview.com/2026/09/08/1143747/what-openais-latest-controversy-tells-us-about-the-future-of-math/" target="_blank" rel="noopener">technologyreview.com</a></div></div></article></section>
+    <section class="feed"><div class="feed-head"><h2>すべてのトピック</h2><span>12件</span></div><div class="grid"><article class="card" style="--accent:#7c8cff"><span class="tag" style="--accent:#7c8cff">🚀 RELEASE</span><h3>DeepSeek v4.1 Flash リリース</h3><p>DeepSeekがv4.1 Flashモデルを発表。Hacker Newsで1011ポイント・575コメントを獲得し、コミュニティから大きな注目を集めた。詳細なベンチマーク・仕様は現時点で限定的だが、コミュニティの反応は今週最大規模のモデルリリースの一つとして評価されている。</p><div class="srcs"><a class="src" href="https://twitter.com/deepseek_ai/status/2097930608790167907" target="_blank" rel="noopener">twitter.com</a></div></article><article class="card" style="--accent:#22d3ee"><span class="tag" style="--accent:#22d3ee">🔬 RESEARCH</span><h3>OpenAIのミレニアム賞解決が数学の未来に示す意味</h3><p>ナビエ・ストークス問題の解決発表を受け、AIが数学研究において果たす役割の変容についての議論が拡大している。MITテクノロジーレビューは今回の論争（盗用疑惑・功績帰属問題を含む）が、今後のAIと数学者の協働モデルをどう形づくるかという観点で重要な示唆を含むと分析している。</p><div class="srcs"><a class="src" href="https://www.technologyreview.com/2026/09/08/1143747/what-openais-latest-controversy-tells-us-about-the-future-of-math/" target="_blank" rel="noopener">technologyreview.com</a></div></article><article class="card" style="--accent:#f5a524"><span class="tag" style="--accent:#f5a524">💼 BUSINESS</span><h3>Mistral、評価額€210億で€30億のシリーズD調達を確認</h3><p>フランスのAIスタートアップMistralが、企業評価額210億ユーロにてシリーズDラウンドで30億ユーロの調達を正式確認した。欧州発AI企業として異例の大型調達であり、米国勢に対抗する欧州AIエコシステムの急成長を象徴する案件として注目される。サムスンも同ラウンドへの出資を行っており、アジア大手によるMistralへの戦略的関与が確認されている。また、MistralのロボティクスチーフがMistralを離れ、新スタートアップで2億ユーロの調達を目指していることも明らかになった。</p><div class="srcs"><a class="src" href="https://sifted.eu/articles/mistral-series-d-3bn/" target="_blank" rel="noopener">sifted.eu</a><a class="src" href="https://sifted.eu/articles/why-did-samsung-back-mistral/" target="_blank" rel="noopener">sifted.eu</a><a class="src" href="https://sifted.eu/articles/exclusive-mistral-robotics-chief-seeks-e200m-for-new-startup/" target="_blank" rel="noopener">sifted.eu</a></div></article><article class="card" style="--accent:#f5a524"><span class="tag" style="--accent:#f5a524">💼 BUSINESS</span><h3>AI人材争奪戦、アジアの大手テック幹部に波及</h3><p>シリコンバレー発のAI人材争奪戦がアジア市場へと拡大。OpenAIとAnthropicがGoogle、Microsoft、Amazonなどのアジア地域幹部を積極採用しており、既存の大手テック企業は深刻な人材流出リスクに直面している。AIスタートアップがグローバル規模でのタレント獲得を強化する動きが鮮明になっている。</p><div class="srcs"><a class="src" href="https://restofworld.org/2026/openai-anthropic-big-tech-executives-asia/" target="_blank" rel="noopener">restofworld.org</a></div></article><article class="card" style="--accent:#f5a524"><span class="tag" style="--accent:#f5a524">💼 BUSINESS</span><h3>Anthropicへの巨額コンピュート投資・TPU推論高速化</h3><p>OpenAIのマネージドエージェント機能展開と並行し、AnthropicがAIコンピュートインフラへ約5170億ドル規模の投資を行っていることが報じられた。TPUを活用した推論高速化も進展しており、業界全体でAIインフラ競争が激化している。</p><div class="srcs"><a class="src" href="https://tldr.tech/ai/2026-09-08" target="_blank" rel="noopener">tldr.tech</a></div></article><article class="card" style="--accent:#f87171"><span class="tag" style="--accent:#f87171">📜 POLICY</span><h3>米政府、中国AI6社によるモデル蒸留攻撃を名指しで非難</h3><p>NSA・CISA・FBIが共同声明を発表し、DeepSeek、Moonshot AI、アリババ、MiniMax、StepFun、Z.AIの中国AI6社が少なくとも2024年末から米国フロンティアAIモデルを産業規模で蒸留・模倣する攻撃を行ってきたと断定した。各社は「中国政府の認知のもと」で活動した可能性が高く、この手法により数十億ドル相当の開発コスト削減が行われたとされる。Anthropicも同期間にAlibaba・Moonshot AI・DeepSeekによる蒸留攻撃の実態を詳述したレポートを独自に公開している。</p><div class="srcs"><a class="src" href="https://arstechnica.com/tech-policy/2026/09/six-chinese-ai-firms-accused-of-aggressively-copying-us-frontier-models/" target="_blank" rel="noopener">arstechnica.com</a><a class="src" href="https://techcrunch.com/2026/09/10/anthropic-details-distillation-campaigns-from-alibaba-moonshot-ai-and-deepseek/" target="_blank" rel="noopener">techcrunch.com</a></div></article><article class="card" style="--accent:#f87171"><span class="tag" style="--accent:#f87171">📜 POLICY</span><h3>AnthropicがAI開発減速「Pace the Frontier」計画を発表</h3><p>AnthropicのCEO ダリオ・アモデイが2026年9月12日、「We Must Pace the Frontier」と題した論文を公開し、AIモデルの能力向上ペースを意図的に遅らせる3段階計画を提唱した。OpenAIのサム・アルトマン、xAIのイーロン・マスク、MicrosoftのサティヤナデラがそれぞれX上で支持を表明。投稿は翌日までに6700万回超閲覧された。</p><div class="srcs"><a class="src" href="https://www.marktechpost.com/2026/09/13/anthropics-3-step-pace-the-frontier-plan-wins-openai-xai-and-microsoft-support-is-it-too-late-to-slow-ai-down/" target="_blank" rel="noopener">marktechpost.com</a><a class="src" href="https://techcrunch.com/2026/09/12/anthropic-ceo-outlines-plan-to-pace-the-frontier/" target="_blank" rel="noopener">techcrunch.com</a></div></article><article class="card" style="--accent:#f87171"><span class="tag" style="--accent:#f87171">📜 POLICY</span><h3>フーシ派がAnthropicのAIを誘導兵器開発に悪用</h3><p>イエメンの武装勢力フーシ派がAnthropicのAIを誘導兵器の開発に利用していたとワシントン・ポストが報道した（2026年9月11日）。AIサービスの利用規約違反かつ安全保障上の重大リスクを示す事例として注目され、AI企業の利用者審査・安全管理体制の強化が改めて問われる状況となっている。</p><div class="srcs"><a class="src" href="https://www.washingtonpost.com/technology/2026/09/11/rebels-used-anthropics-ai-bot-develop-guided-weapons-report-says/" target="_blank" rel="noopener">washingtonpost.com</a></div></article><article class="card" style="--accent:#f87171"><span class="tag" style="--accent:#f87171">📜 POLICY</span><h3>Claudeの生物兵器研究向け安全策が複数回突破される</h3><p>Anthropicは、科学者らが生物兵器研究にClaudeを悪用しようとした5件の具体的事例を公開した。ロシア・中国・イランなどアクセス禁止国のユーザーが一部に関与しており、研究目的の隠蔽や安全策の迂回など多様な手口が確認された。Anthropicはこの公開を通じ、業界全体での議論促進を意図している。</p><div class="srcs"><a class="src" href="https://arstechnica.com/ai/2026/09/claude-users-found-ways-around-safeguards-for-bioweapons-research/" target="_blank" rel="noopener">arstechnica.com</a></div></article><article class="card" style="--accent:#f87171"><span class="tag" style="--accent:#f87171">📜 POLICY</span><h3>Anthropic研究者が退職、自己改善型AIの危険性を公開警告</h3><p>Anthropicの研究者Jacob Coxonが退職し、「自己改善型超知性AIが2030年代末までに人類を絶滅させる可能性がある」と公開警告した。同社のアライメントリードがこの警告に賛同署名し、否定しなかった点が衝撃を与えている。Anthropic社がIPO準備中とされるタイミングでの発表であることも注目を集めている。</p><div class="srcs"><a class="src" href="https://techcrunch.com/podcast/an-anthropic-researchers-doomsday-warning-comes-at-a-very-interesting-time/" target="_blank" rel="noopener">techcrunch.com</a><a class="src" href="https://arstechnica.com/ai/2026/09/anthropic-researcher-quits-with-a-warning-self-improving-ai-could-kill-us-all/" target="_blank" rel="noopener">arstechnica.com</a></div></article><article class="card" style="--accent:#f87171"><span class="tag" style="--accent:#f87171">📜 POLICY</span><h3>MetaがCSAM含む広告332件を見逃す</h3><p>Tech Transparency Projectの調査により、MetaがFacebook・Instagram上でAI生成の児童性的虐待素材（CSAM）を含む広告332件の検出に失敗していたことが判明した。広告の多くは中国製「nudify」アプリ（実在人物の画像を裸に加工するAIアプリ）を宣伝するもので、実在する未成年者の写真が使用されていた。通報後のMetaの対応にも数日を要した。</p><div class="srcs"><a class="src" href="https://arstechnica.com/tech-policy/2026/09/real-photos-of-young-girls-were-in-nudify-app-ads-on-facebook-instagram/" target="_blank" rel="noopener">arstechnica.com</a></div></article><article class="card" style="--accent:#f87171"><span class="tag" style="--accent:#f87171">📜 POLICY</span><h3>AIデータセンターの停電問題はアーキテクチャに起因</h3><p>2026年7月、バージニア州アッシュバーンで送電線障害が発生し、3GW超の負荷が瞬時に脱落した。同地域では2年前にも1,500MW・60施設が同時停止する類似障害が発生していた。MITテクノロジーレビューは、AI電力問題の本質は発電・送電量よりデータセンターの電力アーキテクチャ設計にあると指摘している。</p><div class="srcs"><a class="src" href="https://www.technologyreview.com/2026/09/10/1141649/powering-ai-is-an-architecture-problem/" target="_blank" rel="noopener">technologyreview.com</a></div></article></div></section>
+    <footer>自動生成AIニュースダイジェスト · 2026-09-14</footer>
+  </div>
+</body>
+</html>
