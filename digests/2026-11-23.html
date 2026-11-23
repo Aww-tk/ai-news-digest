@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AIニュースダイジェスト 2026-11-23</title>
+<style>
+  :root {
+    --bg: #0b0e13; --surface: #141a22; --surface-2: #1a222d;
+    --ink: #eef2f6; --muted: #98a4b3; --line: #232c38; --brand: #7c8cff;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font-family: system-ui, -apple-system, "Segoe UI", "Hiragino Kaku Gothic ProN",
+      "Yu Gothic", Meiryo, sans-serif;
+    line-height: 1.7; -webkit-font-smoothing: antialiased;
+    background-image:
+      radial-gradient(900px 500px at 100% -10%, rgba(124,140,255,.10), transparent),
+      radial-gradient(700px 400px at -10% 0%, rgba(34,211,238,.06), transparent);
+    background-attachment: fixed;
+  }
+  a { color: inherit; text-decoration: none; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px 96px; }
+
+  /* ---- Masthead ---- */
+  header.bar {
+    position: sticky; top: 0; z-index: 20;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 24px; background: rgba(11,14,19,.82);
+    backdrop-filter: saturate(140%) blur(12px);
+    border-bottom: 1px solid var(--line);
+  }
+  .logo { display: flex; align-items: center; gap: 10px; font-weight: 800;
+    letter-spacing: .04em; font-size: 17px; }
+  .logo .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--brand);
+    box-shadow: 0 0 16px var(--brand); }
+  .logo small { color: var(--muted); font-weight: 600; letter-spacing: .28em;
+    font-size: 11px; }
+  .bar .date { color: var(--muted); font-size: 13px; font-variant-numeric: tabular-nums;
+    display: flex; align-items: center; gap: 12px; }
+  .bar .date b { color: var(--ink); }
+
+  /* ---- Lead ---- */
+  .lead { padding: 52px 0 8px; }
+  .lead .kicker { color: var(--brand); font-weight: 700; letter-spacing: .3em;
+    font-size: 12px; text-transform: uppercase; }
+  .lead h1 { margin: 12px 0 0; font-size: clamp(30px, 5.2vw, 52px); font-weight: 850;
+    letter-spacing: .01em; line-height: 1.15; }
+
+  /* ---- Hero ---- */
+  .hero-wrap { display: grid; gap: 20px; margin: 34px 0 12px; }
+  @media (min-width: 860px) { .hero-wrap { grid-template-columns: 1fr 1fr; } }
+  article.hero {
+    display: flex; flex-direction: column; overflow: hidden;
+    background: var(--surface); border: 1px solid var(--line); border-radius: 18px;
+    transition: transform .18s ease, border-color .18s ease;
+  }
+  article.hero:hover { transform: translateY(-3px); border-color: var(--accent); }
+  .hero-art {
+    height: 150px; display: flex; align-items: center; justify-content: center;
+    font-size: 62px;
+    background:
+      radial-gradient(120% 120% at 20% 0%, color-mix(in srgb, var(--accent) 55%, transparent), transparent 60%),
+      linear-gradient(135deg, color-mix(in srgb, var(--accent) 30%, #0b0e13), #0b0e13);
+    border-bottom: 1px solid var(--line);
+  }
+  .hero-art span { filter: drop-shadow(0 6px 18px rgba(0,0,0,.5)); }
+  .hero-body { padding: 22px 24px 24px; }
+  article.hero h2 { margin: 12px 0 10px; font-size: clamp(20px, 2.4vw, 26px);
+    font-weight: 800; line-height: 1.35; }
+  article.hero p { margin: 0 0 16px; color: var(--muted); font-size: 15px; }
+
+  /* ---- Tag ---- */
+  .tag { display: inline-flex; align-items: center; gap: 6px; font-size: 11px;
+    font-weight: 800; letter-spacing: .12em; color: var(--accent);
+    background: color-mix(in srgb, var(--accent) 14%, transparent);
+    border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+    padding: 4px 10px; border-radius: 999px; }
+
+  /* ---- Feed grid ---- */
+  .feed { margin-top: 52px; }
+  .feed-head { display: flex; align-items: baseline; gap: 14px;
+    padding-bottom: 16px; margin-bottom: 26px; border-bottom: 1px solid var(--line); }
+  .feed-head h2 { margin: 0; font-size: 20px; font-weight: 800; }
+  .feed-head span { color: var(--muted); font-size: 13px; }
+  /* Masonry-style columns: each card sizes to its full content, no truncation. */
+  .grid { columns: 1; column-gap: 20px; }
+  @media (min-width: 760px) { .grid { columns: 2; } }
+
+  article.card {
+    display: flex; flex-direction: column; position: relative;
+    break-inside: avoid; margin: 0 0 20px;
+    background: var(--surface); border: 1px solid var(--line); border-radius: 16px;
+    padding: 22px 22px 20px; transition: transform .16s ease, border-color .16s ease,
+      background .16s ease;
+  }
+  article.card::before {
+    content: ""; position: absolute; inset: 0 auto 0 0; width: 3px;
+    border-radius: 16px 0 0 16px; background: var(--accent); opacity: 0;
+    transition: opacity .16s ease;
+  }
+  article.card:hover { transform: translateY(-3px); border-color: var(--accent);
+    background: var(--surface-2); }
+  article.card:hover::before { opacity: .9; }
+  article.card h3 { margin: 12px 0 10px; font-size: 16.5px; font-weight: 700;
+    line-height: 1.5; }
+  article.card p { margin: 0 0 16px; color: var(--muted); font-size: 14px;
+    line-height: 1.8; }
+
+  /* ---- Sources ---- */
+  .srcs { margin-top: 4px; display: flex; flex-wrap: wrap; gap: 6px; }
+  .src { font-size: 12px; color: var(--muted); border: 1px solid var(--line);
+    border-radius: 7px; padding: 3px 9px; transition: color .14s, border-color .14s; }
+  .src::before { content: "↗ "; color: var(--accent); }
+  .src:hover { color: var(--ink); border-color: var(--accent); }
+
+  footer { margin-top: 72px; padding-top: 26px; border-top: 1px solid var(--line);
+    text-align: center; color: var(--muted); font-size: 12px; }
+</style>
+</head>
+<body>
+  <header class="bar">
+    <div class="logo"><span class="dot"></span>AI NEWS <small>DIGEST</small></div>
+    <div class="date"><b>2026.11.23（月）</b><span>12 topics</span></div>
+  </header>
+  <div class="wrap">
+    <div class="lead">
+      <div class="kicker">Daily AI Briefing</div>
+      <h1>AIニュースダイジェスト</h1>
+    </div>
+    <section class="hero-wrap"><article class="hero" style="--accent:#7c8cff"><div class="hero-art"><span>🚀</span></div><div class="hero-body"><span class="tag" style="--accent:#7c8cff">🚀 RELEASE</span><h2>OpenAI、GPT-6.2 AstraとSolを発表</h2><p>OpenAIはフロンティアモデル「GPT-6.2 Astra」と日常作業向け効率モデル「GPT-6.2 Sol」を同時リリースした。GPT-6.2 AstraはAPIでモデルID `gpt-6.2-astra` として提供され、価格は入力$8/MTok・出力$40/MTokと前モデル比80%に値下げ。キャッシュ価格も$1/Mから$0.40/Mへ大幅削減となった。コーディング・コンピュータ操作・プロ向け出力品質の向上が主な特徴で、ChatGPT Work、Codex、API全体で利用可能。 - [1] OpenAI Blog - [2] Simon Willison&#x27;s Weblog</p></div></article><article class="hero" style="--accent:#7c8cff"><div class="hero-art"><span>🚀</span></div><div class="hero-body"><span class="tag" style="--accent:#7c8cff">🚀 RELEASE</span><h2>Google、Gemini 4 Neonを発表</h2><p>Google DeepMindが新モデル「Gemini 4 Neon」を公式発表した。Hacker Newsでは1,066ポイント・775コメントを集め、業界内外から高い注目を受けている。Geminiシリーズの新展開として詳細が公式ブログで公開されている。 - [1] Google DeepMind Blog - [2] Google Blog</p></div></article></section>
+    <section class="feed"><div class="feed-head"><h2>すべてのトピック</h2><span>10件</span></div><div class="grid"><article class="card" style="--accent:#7c8cff"><span class="tag" style="--accent:#7c8cff">🚀 RELEASE</span><h3>NVIDIA、自動運転向け推論VLAモデル「Alpamayo 2 Edge」を公開</h3><p>NVIDIAは自動運転向けコンパクト推論モデル「Alpamayo 2 Edge」をリリースした。バックボーン2.45B＋アクションエキスパート0.2Bの合計約2.65Bパラメータを持つ視覚言語行動（VLA）モデルで、車載コンピュータ「NVIDIA DRIVE AGX Thor」向けに最適化。データセンターGPUに依存せず、車内で経路計画と理由説明を完結させる推論ベースのアーキテクチャを採用している。</p><div class="srcs"><a class="src" href="https://www.marktechpost.com/2026/11/22/nvidia-alpamayo-2-edge-2b-reasoning-vla-drive-thor/" target="_blank" rel="noopener">marktechpost.com</a></div></article><article class="card" style="--accent:#7c8cff"><span class="tag" style="--accent:#7c8cff">🚀 RELEASE</span><h3>NVIDIA、連続拡散言語モデル「Nemotron-Labs-Sigma」公開</h3><p>NVIDIAが3Bおよび8Bスケールの合計14チェックポイントからなる連続拡散言語モデル「Nemotron-Labs-Sigma」を公開した。既存の離散トークン型拡散LLM（LLaDAやDreamなど）と異なり、16次元の連続埋め込み空間でテキストをデノイズする新アーキテクチャを採用。最大8,192トークンのコンテキスト長を持ち、Ampere世代以降の1枚のNVIDIA GPUでbfloat16動作が可能。</p><div class="srcs"><a class="src" href="https://www.marktechpost.com/2026/11/20/nvidia-nemotron-labs-sigma-continuous-diffusion-language-model/" target="_blank" rel="noopener">marktechpost.com</a></div></article><article class="card" style="--accent:#7c8cff"><span class="tag" style="--accent:#7c8cff">🚀 RELEASE</span><h3>OpenAI、音声エージェント向けGPT-Live-1.1をAPI公開</h3><p>OpenAIはフルデュプレックス対応の多言語音声モデル「GPT-Live-1.1」をAPI（モデルID: `gpt-live-1.1`）として公開した。発話中でも同時に音声受信が可能で、言語をまたいでも自然なアクセントを維持。タスク完了の信頼性も向上している。またアイドルセッション向けに「スタンバイ」モードを追加し、待機コストを0.02ドル/分に削減した。</p><div class="srcs"><a class="src" href="https://www.marktechpost.com/2026/11/21/openai-gpt-live-1-1-api-standby-mode/" target="_blank" rel="noopener">marktechpost.com</a></div></article><article class="card" style="--accent:#7c8cff"><span class="tag" style="--accent:#7c8cff">🚀 RELEASE</span><h3>Google Gemini API、ツール検索機能をプレビュー公開</h3><p>Google Gemini APIに「Tool Retrieval」機能がプレビュー公開された。エージェントが大規模なツールライブラリを保持しつつ、タスクに必要なツールスキーマのみを動的にロードできる仕組みで、多数のツールやMCPサーバーに接続するエージェントのトークンコスト削減が主目的。Googleは安定した20未満のツールには従来の静的ロードを推奨している。</p><div class="srcs"><a class="src" href="https://www.marktechpost.com/2026/11/22/google-gemini-api-tool-retrieval/" target="_blank" rel="noopener">marktechpost.com</a></div></article><article class="card" style="--accent:#f5a524"><span class="tag" style="--accent:#f5a524">💼 BUSINESS</span><h3>Anthropic、史上最大のIPOを完了——株価急落でAI株全体に波及</h3><p>AnthropicはNasdaqへの上場を完了し、IPOで813億ドルを調達。評価額は1.5〜1.76兆ドルと史上最大のIPO規模となった。IPO価格は1株83ドルで、初日終値は97.17ドル（約17%上昇）となったが、翌日以降は公開価格を下回り急落。Nvidia・AMD・Micronなどの半導体株も連鎖下落し、S&amp;P500とダウは調整局面入り、NasdaqはAIショックで2026年の上昇分を全て消した。創業者7名は合計約20億ドルを売却。Dario・DanielaはClass F株で議決権の50.1%を保持し、安全性優先の経営方針を維持するとした。 - [1] Latent Space - [2] Platformer (Casey Newton) - [3] Marcus on AI - [4] TechCrunch - [5] Anthropic News (IPOクローズ発表) - [6] Sifted (欧州への影響)</p></article><article class="card" style="--accent:#f5a524"><span class="tag" style="--accent:#f5a524">💼 BUSINESS</span><h3>NvidiaのJensen Huang CEO辞任・復帰騒動</h3><p>Nvidiaの共同創業者兼CEOジェンセン・フアン氏が、中国のスパイ容疑者との不倫疑惑を受け辞任した。時価総額4兆ドルのNvidiaは独立調査を開始。イーロン・マスクやHugging Face幹部、a16z・Sequoiaなどの支持者が「ウォールーム」を設けて復帰を画策し、署名は11万5,000人超に達した。トランプ大統領も復帰を支持する一方、批判団体は米中AI安全保障リスクを理由に議会調査を要求している。 - [1] TechCrunch (タイムライン) - [2] Ars Technica (批判) - [3] Ars Technica (ウォールーム) - [4] MIT Tech Review</p></article><article class="card" style="--accent:#f5a524"><span class="tag" style="--accent:#f5a524">💼 BUSINESS</span><h3>MicrosoftがCopilotを「仕事の新OS」と宣言</h3><p>Microsoft Ignite 2026でCEOサティア・ナデラがCopilotを「仕事の新OS」と定義し、Word・Excel・PowerPointをCopilot内で一般提供開始すると発表した。従来のアプリ主役・AIアシスタント補助の構造を逆転させ、AIエージェントが主導しアプリが補助役となるアーキテクチャへの転換を示した。</p><div class="srcs"><a class="src" href="https://arstechnica.com/gadgets/2026/11/microsoft-calls-copilot-the-new-os-for-work-at-ignite-keynote/" target="_blank" rel="noopener">arstechnica.com</a></div></article><article class="card" style="--accent:#f5a524"><span class="tag" style="--accent:#f5a524">💼 BUSINESS</span><h3>AppleがMac操作AIエージェントを開発中か</h3><p>Appleが自社製AIエージェントを開発している可能性が浮上した。MacをAIが操作・制御する機能を持つとされ、Meta Muse・Instinct・Claude・OpenAI Dotsなど競合エージェントへの対抗策とみられる。詳細はまだ明らかになっていない。</p><div class="srcs"><a class="src" href="https://techcrunch.com/2026/11/19/apple-may-be-developing-its-own-ai-agent-that-runs-your-mac/" target="_blank" rel="noopener">techcrunch.com</a></div></article><article class="card" style="--accent:#f87171"><span class="tag" style="--accent:#f87171">📜 POLICY</span><h3>MetaのAIエージェント「Muse」が他人の個人情報を漏洩</h3><p>MetaのAIエージェント「Muse」が、ユーザー間の会話を混同し他人の銀行残高・育児リクエスト・商品注文などの機密情報を誤表示する問題が発覚した。Reuters報道によりMeta社員も内部チャットで懸念を表明していたことが判明。Museが暗号化されたプライベートメッセージにアクセスし、ユーザーが求めていない情報を返答するケースも確認されている。 - [1] TechCrunch - [2] Ars Technica</p></article><article class="card" style="--accent:#22d3ee"><span class="tag" style="--accent:#22d3ee">🔬 RESEARCH</span><h3>AIサプライチェーンで200万件の個人情報漏洩実験</h3><p>研究者がAIサービスへのリクエストに200万件のデジタル「カナリアトークン」を仕込み、個人情報の漏洩経路を追跡する実験を実施。OpenRouterやVercelなどのAIルーター・ブローカーサービスを経由した機密データの漏洩が確認され、AIエコシステム全体でユーザーの機密情報がほぼ制御されずに流出しているという深刻な実態が明らかになった。</p><div class="srcs"><a class="src" href="https://arstechnica.com/security/2026/11/a-leaky-ai-supply-chain-is-exposing-secret-user-data-at-an-alarming-rate/" target="_blank" rel="noopener">arstechnica.com</a></div></article></div></section>
+    <footer>自動生成AIニュースダイジェスト · 2026-11-23</footer>
+  </div>
+</body>
+</html>
