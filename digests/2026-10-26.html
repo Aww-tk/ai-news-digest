@@ -4,135 +4,244 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>AIニュースダイジェスト 2026-10-26</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bg: #0b0e13; --surface: #141a22; --surface-2: #1a222d;
-    --ink: #eef2f6; --muted: #98a4b3; --line: #232c38; --brand: #7c8cff;
-  }
-  * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body {
-    margin: 0; background: var(--bg); color: var(--ink);
-    font-family: system-ui, -apple-system, "Segoe UI", "Hiragino Kaku Gothic ProN",
-      "Yu Gothic", Meiryo, sans-serif;
-    line-height: 1.7; -webkit-font-smoothing: antialiased;
-    background-image:
-      radial-gradient(900px 500px at 100% -10%, rgba(124,140,255,.10), transparent),
-      radial-gradient(700px 400px at -10% 0%, rgba(34,211,238,.06), transparent);
-    background-attachment: fixed;
-  }
-  a { color: inherit; text-decoration: none; }
-  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px 96px; }
+:root{--bg:#f3f5f9;--card:#fff;--ink:#0f172a;--ink2:#334155;--muted:#64748b;--line:#e3e8ef;
+  --brand:#4f46e5;--brand-soft:#eef0ff;--pick:#e11d48;--pick-soft:#ffe9ee;
+  --font:"Inter","Noto Sans JP",system-ui,-apple-system,"Hiragino Kaku Gothic ProN",Meiryo,sans-serif}
+@media (prefers-color-scheme:dark){:root{--bg:#0a0f1c;--card:#111827;--ink:#e7ebf3;--ink2:#c3cad8;
+  --muted:#8c98ad;--line:#1f2937;--brand:#8b93ff;--brand-soft:#1b1f3d;--pick:#fb7185;--pick-soft:#3a1420}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);line-height:1.75;
+  -webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
 
-  /* ---- Masthead ---- */
-  header.bar {
-    position: sticky; top: 0; z-index: 20;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 16px 24px; background: rgba(11,14,19,.82);
-    backdrop-filter: saturate(140%) blur(12px);
-    border-bottom: 1px solid var(--line);
-  }
-  .logo { display: flex; align-items: center; gap: 10px; font-weight: 800;
-    letter-spacing: .04em; font-size: 17px; }
-  .logo .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--brand);
-    box-shadow: 0 0 16px var(--brand); }
-  .logo small { color: var(--muted); font-weight: 600; letter-spacing: .28em;
-    font-size: 11px; }
-  .bar .date { color: var(--muted); font-size: 13px; font-variant-numeric: tabular-nums;
-    display: flex; align-items: center; gap: 12px; }
-  .bar .date b { color: var(--ink); }
+/* ---- phone-first: sidebar and main dissolve into one column ---- */
+.layout{display:flex;flex-direction:column;max-width:720px;margin:0 auto;padding:0 16px 80px}
+.side,.main{display:contents}
+.hd{order:0;padding:28px 2px 14px}
+.tldr{order:1}
+.chips{order:2}
+.groups{order:3}
+footer{order:4}
+.pc{display:none!important}
 
-  /* ---- Lead ---- */
-  .lead { padding: 52px 0 8px; }
-  .lead .kicker { color: var(--brand); font-weight: 700; letter-spacing: .3em;
-    font-size: 12px; text-transform: uppercase; }
-  .lead h1 { margin: 12px 0 0; font-size: clamp(30px, 5.2vw, 52px); font-weight: 850;
-    letter-spacing: .01em; line-height: 1.15; }
+.brand{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.12em;color:var(--brand)}
+.brand i{width:8px;height:8px;border-radius:50%;background:var(--brand)}
+.hd h1{font-size:26px;line-height:1.35;margin:8px 0 4px;font-weight:800}
+.meta{font-size:13px;color:var(--muted)}
 
-  /* ---- Hero ---- */
-  .hero-wrap { display: grid; gap: 20px; margin: 34px 0 12px; }
-  @media (min-width: 860px) { .hero-wrap { grid-template-columns: 1fr 1fr; } }
-  article.hero {
-    display: flex; flex-direction: column; overflow: hidden;
-    background: var(--surface); border: 1px solid var(--line); border-radius: 18px;
-    transition: transform .18s ease, border-color .18s ease;
-  }
-  article.hero:hover { transform: translateY(-3px); border-color: var(--accent); }
-  .hero-art {
-    height: 150px; display: flex; align-items: center; justify-content: center;
-    font-size: 62px;
-    background:
-      radial-gradient(120% 120% at 20% 0%, color-mix(in srgb, var(--accent) 55%, transparent), transparent 60%),
-      linear-gradient(135deg, color-mix(in srgb, var(--accent) 30%, #0b0e13), #0b0e13);
-    border-bottom: 1px solid var(--line);
-  }
-  .hero-art span { filter: drop-shadow(0 6px 18px rgba(0,0,0,.5)); }
-  .hero-body { padding: 22px 24px 24px; }
-  article.hero h2 { margin: 12px 0 10px; font-size: clamp(20px, 2.4vw, 26px);
-    font-weight: 800; line-height: 1.35; }
-  article.hero p { margin: 0 0 16px; color: var(--muted); font-size: 15px; }
+.tldr{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 18px 8px;
+  box-shadow:0 1px 2px rgba(15,23,42,.04)}
+.tldr h2{font-size:13px;margin:0 0 6px;color:var(--brand);letter-spacing:.06em}
+.tldr ul{list-style:none;margin:0;padding:0}
+.tldr li{border-top:1px solid var(--line)}
+.tldr li:first-child{border-top:0}
+.hl{display:grid;grid-template-columns:22px 1fr;gap:6px;padding:9px 0;font-size:14.5px;line-height:1.65}
+.hl::before{content:"";width:16px;height:16px;margin-top:4px;border-radius:50%;
+  background:var(--brand-soft) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4.5 8.2l2.2 2.2 4.8-4.8' fill='none' stroke='%236366f1' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/16px no-repeat}
+a.hl:hover strong{color:var(--brand)}
 
-  /* ---- Tag ---- */
-  .tag { display: inline-flex; align-items: center; gap: 6px; font-size: 11px;
-    font-weight: 800; letter-spacing: .12em; color: var(--accent);
-    background: color-mix(in srgb, var(--accent) 14%, transparent);
-    border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
-    padding: 4px 10px; border-radius: 999px; }
+.chips{position:sticky;top:0;z-index:5;display:flex;gap:8px;overflow-x:auto;margin:10px -16px 0;
+  padding:14px 16px;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);
+  scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:none;border:1px solid var(--line);background:var(--card);color:var(--ink);font:inherit;
+  font-size:13px;font-weight:600;padding:6px 12px;border-radius:999px;cursor:pointer}
+.chip b{font-weight:600;color:var(--muted);margin-left:4px}
+.chip[aria-pressed=true]{background:var(--ink);color:var(--card);border-color:var(--ink)}
+.chip[aria-pressed=true] b{color:inherit;opacity:.7}
+.chip.pick[aria-pressed=true]{background:var(--pick);border-color:var(--pick);color:#fff}
 
-  /* ---- Feed grid ---- */
-  .feed { margin-top: 52px; }
-  .feed-head { display: flex; align-items: baseline; gap: 14px;
-    padding-bottom: 16px; margin-bottom: 26px; border-bottom: 1px solid var(--line); }
-  .feed-head h2 { margin: 0; font-size: 20px; font-weight: 800; }
-  .feed-head span { color: var(--muted); font-size: 13px; }
-  /* Masonry-style columns: each card sizes to its full content, no truncation. */
-  .grid { columns: 1; column-gap: 20px; }
-  @media (min-width: 760px) { .grid { columns: 2; } }
+.grp{margin-top:18px}
+.grp[hidden]{display:none}
+.grp-h{display:flex;align-items:baseline;gap:8px;margin:0 2px 10px;font-size:15px;font-weight:800}
+.grp-h span{font-size:12px;font-weight:600;color:var(--muted)}
+.list{display:grid;gap:10px}
+details{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;
+  scroll-margin-top:72px;transition:border-color .2s,box-shadow .2s}
+details[hidden]{display:none}
+summary{list-style:none;cursor:pointer;padding:14px 16px;display:grid;gap:6px}
+summary::-webkit-details-marker{display:none}
+.row-meta{display:flex;align-items:center;gap:8px;font-size:11.5px;font-weight:700;color:var(--muted)}
+.num{font-variant-numeric:tabular-nums;color:var(--muted);font-weight:600}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--accent)}
+.badge{color:var(--pick);background:var(--pick-soft);padding:1px 7px;border-radius:6px;font-size:11px}
+.row-meta .dom{margin-left:auto;font-weight:500}
+summary h3{margin:0;font-size:16px;line-height:1.5;font-weight:700}
+.preview{margin:0;font-size:13.5px;color:var(--muted);display:-webkit-box;-webkit-line-clamp:2;
+  -webkit-box-orient:vertical;overflow:hidden}
+details[open] .preview{display:none}
+.more{padding:0 16px 16px}
+.more p{margin:0 0 14px;font-size:14.5px;color:var(--ink2)}
+.btns{display:flex;flex-wrap:wrap;gap:8px}
+.btn{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;padding:8px 12px;
+  border-radius:10px;background:var(--brand-soft);color:var(--brand);transition:filter .15s}
+.btn:hover{filter:brightness(.95)}
+.btn small{font-weight:500;opacity:.8}
+details.flash{animation:flash 1.4s ease-out}
+@keyframes flash{0%,30%{border-color:var(--brand);box-shadow:0 0 0 4px var(--brand-soft)}}
+footer{margin-top:40px;text-align:center;font-size:12px;color:var(--muted)}
+footer a{text-decoration:underline;text-underline-offset:3px}
 
-  article.card {
-    display: flex; flex-direction: column; position: relative;
-    break-inside: avoid; margin: 0 0 20px;
-    background: var(--surface); border: 1px solid var(--line); border-radius: 16px;
-    padding: 22px 22px 20px; transition: transform .16s ease, border-color .16s ease,
-      background .16s ease;
-  }
-  article.card::before {
-    content: ""; position: absolute; inset: 0 auto 0 0; width: 3px;
-    border-radius: 16px 0 0 16px; background: var(--accent); opacity: 0;
-    transition: opacity .16s ease;
-  }
-  article.card:hover { transform: translateY(-3px); border-color: var(--accent);
-    background: var(--surface-2); }
-  article.card:hover::before { opacity: .9; }
-  article.card h3 { margin: 12px 0 10px; font-size: 16.5px; font-weight: 700;
-    line-height: 1.5; }
-  article.card p { margin: 0 0 16px; color: var(--muted); font-size: 14px;
-    line-height: 1.8; }
+/* ---- PC: sticky sidebar + reading column ---- */
+@media (min-width:1024px){
+  .layout{display:grid;grid-template-columns:288px minmax(0,1fr);gap:0 56px;max-width:1200px;
+    padding:0 40px 96px;align-items:start}
+  .side{display:flex;flex-direction:column;gap:22px;position:sticky;top:0;max-height:100vh;
+    overflow-y:auto;padding:40px 6px 28px 0;scrollbar-width:thin;scrollbar-color:var(--line) transparent}
+  .main{display:block;padding-top:40px;max-width:800px}
+  .hd,.tldr,.chips,.groups,footer{order:0}
+  .pc{display:block!important}
+  .view.pc{display:flex!important}
+  .hd{padding:0}
+  .hd h1{font-size:24px}
+  .side-h{font-size:11px;font-weight:700;letter-spacing:.1em;color:var(--muted);margin:0 0 8px}
+  .chips{position:static;flex-wrap:wrap;overflow:visible;margin:0;padding:0;background:none;
+    backdrop-filter:none;gap:6px}
+  .chip{font-size:12.5px;padding:5px 11px}
 
-  /* ---- Sources ---- */
-  .srcs { margin-top: 4px; display: flex; flex-wrap: wrap; gap: 6px; }
-  .src { font-size: 12px; color: var(--muted); border: 1px solid var(--line);
-    border-radius: 7px; padding: 3px 9px; transition: color .14s, border-color .14s; }
-  .src::before { content: "↗ "; color: var(--accent); }
-  .src:hover { color: var(--ink); border-color: var(--accent); }
+  .view{gap:3px;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:3px}
+  .view button{flex:1;border:0;background:none;font:inherit;font-size:12.5px;font-weight:600;
+    color:var(--muted);padding:6px 8px;border-radius:7px;cursor:pointer}
+  .view button[aria-pressed=true]{background:var(--brand-soft);color:var(--brand)}
 
-  footer { margin-top: 72px; padding-top: 26px; border-top: 1px solid var(--line);
-    text-align: center; color: var(--muted); font-size: 12px; }
+  .toc-g[hidden]{display:none}
+  .toc-h{display:flex;align-items:center;gap:6px;font-size:11.5px;font-weight:700;color:var(--muted);
+    margin:12px 0 2px 8px}
+  .toc-g:first-of-type .toc-h{margin-top:0}
+  .toc a{display:grid;grid-template-columns:24px 1fr;padding:5px 8px;border-radius:8px;font-size:13px;
+    line-height:1.5;color:var(--ink2);transition:background .15s,color .15s}
+  .toc a[hidden]{display:none}
+  .toc a .n{font-size:11px;font-variant-numeric:tabular-nums;color:var(--muted);padding-top:2px}
+  .toc a.pick .t::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;
+    background:var(--pick);margin:0 6px 2px 0;vertical-align:middle}
+  .toc a:hover{background:var(--card)}
+  .toc a.on{background:var(--brand-soft);color:var(--brand);font-weight:600}
+  .toc a.on .n{color:var(--brand)}
+
+  .keys{font-size:11.5px;color:var(--muted);line-height:2.1;border-top:1px solid var(--line);padding-top:14px}
+  kbd{font:inherit;font-size:11px;font-weight:600;color:var(--ink);background:var(--card);
+    border:1px solid var(--line);border-bottom-width:2px;border-radius:5px;padding:0 6px;margin-right:2px}
+  .archive{display:block;margin-top:10px;font-size:12.5px;font-weight:600;color:var(--brand)}
+
+  .tldr{padding:22px 26px 10px;border-radius:18px}
+  .tldr h2{font-size:13.5px}
+  .hl{font-size:15px;padding:10px 0}
+  .grp{margin-top:40px}
+  .grp-h{font-size:18px;margin-bottom:14px}
+  .list{gap:14px}
+  details{scroll-margin-top:28px;border-radius:16px}
+  summary{padding:22px 28px 6px;gap:8px}
+  details:not([open]) summary{padding-bottom:20px}
+  summary h3{font-size:19.5px;line-height:1.55}
+  .more{padding:4px 28px 24px}
+  .more p{font-size:15.5px;line-height:1.95;max-width:42em;margin-bottom:18px}
+  details.cur{border-color:color-mix(in srgb,var(--brand) 40%,var(--line))}
+  footer{text-align:left}
+}
 </style>
 </head>
 <body>
-  <header class="bar">
-    <div class="logo"><span class="dot"></span>AI NEWS <small>DIGEST</small></div>
-    <div class="date"><b>2026.10.26（月）</b><span>18 topics</span></div>
-  </header>
-  <div class="wrap">
-    <div class="lead">
-      <div class="kicker">Daily AI Briefing</div>
-      <h1>AIニュースダイジェスト</h1>
-    </div>
-    <section class="hero-wrap"><article class="hero" style="--accent:#7c8cff"><div class="hero-art"><span>🚀</span></div><div class="hero-body"><span class="tag" style="--accent:#7c8cff">🚀 RELEASE</span><h2>Hugging FaceがDNA言語モデル「Carbon-X」公開</h2><p>Hugging Faceが148億パラメータのオープンなDNA言語モデル「Carbon-X」をリリースした。デコーダーのみのアーキテクチャで、生のDNA配列をチャット形式で入力し英語で回答する。変異の病原性予測、調節領域の特定、生物分類、次の塩基予測などが可能。中関村アカデミーおよびナポリ・フェデリコII世大学との共同開発で、Apache 2.0ライセンスで公開。コンテキスト長は40,960トークンで、80GB GPU×1台で動作可能。DNAと自然言語を統合した初のモデルとして注目される。</p><div class="srcs"><a class="src" href="https://www.marktechpost.com/2026/10/25/hugging-face-carbon-x-14b-dna-language-model/" target="_blank" rel="noopener">marktechpost.com</a></div></div></article><article class="hero" style="--accent:#7c8cff"><div class="hero-art"><span>🚀</span></div><div class="hero-body"><span class="tag" style="--accent:#7c8cff">🚀 RELEASE</span><h2>GoogleとMetaがTorchTPUをオープンソース化</h2><p>PyTorch Conference North America 2026にて、GoogleのTPU向けネイティブPyTorchバックエンド「TorchTPU」がオープンソース化された。MetaはLLMワークロードのTPU移行への活用を発表。同週にAWSもTrainium向け「TorchNeuron」をリリースしており、AIアクセラレータのPyTorchエコシステム統合競争が加速している。</p><div class="srcs"><a class="src" href="https://www.infoq.com/news/2026/10/google-meta-torchtpu/?utm_campaign=infoq_content&amp;utm_source=infoq&amp;utm_medium=feed&amp;utm_term=AI%2C+ML+%26+Data+Engineering" target="_blank" rel="noopener">infoq.com</a></div></div></article></section>
-    <section class="feed"><div class="feed-head"><h2>すべてのトピック</h2><span>16件</span></div><div class="grid"><article class="card" style="--accent:#7c8cff"><span class="tag" style="--accent:#7c8cff">🚀 RELEASE</span><h3>NVIDIAがAIエージェント向けセキュリティ基盤「Sentry」と「OpenShell」を発表</h3><p>NVIDIAはAIエージェントの実行時セキュリティを確保するフレームワーク「NVIDIA Sentry」と、自律型AIエージェントのワークロードを大規模に統制するリファレンスアーキテクチャ「OpenShell」を相次いで発表した。Sentryはエージェントの制御外で監視・強制執行を行い無効化を防ぐ設計。OpenShellはコード取得・ツール生成・特権要求など複合的リスクへのガバナンスを提供する。AIエージェントの普及に伴うセキュリティ需要の高まりへの対応として位置付けられる。</p><div class="srcs"><a class="src" href="https://developer.nvidia.com/blog/inside-nvidia-sentry-secure-ai-agents-at-runtime/" target="_blank" rel="noopener">developer.nvidia.com</a><a class="src" href="https://developer.nvidia.com/blog/how-nvidia-openshell-reference-architecture-secures-and-governs-ai-agent-workloads-at-scale/" target="_blank" rel="noopener">developer.nvidia.com</a></div></article><article class="card" style="--accent:#22d3ee"><span class="tag" style="--accent:#22d3ee">🔬 RESEARCH</span><h3>TokenGateがLLMの長文処理を最大11.3倍高速化</h3><p>スタンフォード大学とUCバークレーの研究者が、LLMの長文プリフィル処理を高速化するモジュール「TokenGate」を発表。学習済みトークン枝刈りにより重要なトークンのみを完全処理し、精度を落とさずにTTFT（初回トークン出力時間）を最大11.3倍短縮、ピーク時プリフィルメモリを最大3.4倍削減する。小型MLPゲートとLoRA（r=16）を追加するだけで既存LLMに適用可能で、Qwen3-1.7B/Qwen3.5-2Bにて128kトークンまで検証済み。Apache-2.0でOSS公開。</p><div class="srcs"><a class="src" href="https://www.marktechpost.com/2026/10/25/stanford-berkeley-tokengate-learned-token-pruning-llm-prefill/" target="_blank" rel="noopener">marktechpost.com</a></div></article><article class="card" style="--accent:#22d3ee"><span class="tag" style="--accent:#22d3ee">🔬 RESEARCH</span><h3>MicrosoftのAI診断システム、難症例で医師を上回る性能</h3><p>MicrosoftのCEO Mustafa Suleiman氏が、同社のAI診断システムが困難な症例において一般科医を上回る性能を示したと発表。科学誌Scienceに掲載された研究に基づく成果。ただし性能向上の主因はMicrosoft独自のシステムより基盤モデルにあるとも指摘されている。同氏は「医療超知性（medical superintelligence）」の実現を目標として掲げている。</p><div class="srcs"><a class="src" href="https://techcrunch.com/2026/10/22/microsofts-mustafa-suleyman-says-its-ai-outperforms-doctors-on-hard-cases-as-he-chases-medical-superintelligence/" target="_blank" rel="noopener">techcrunch.com</a></div></article><article class="card" style="--accent:#22d3ee"><span class="tag" style="--accent:#22d3ee">🔬 RESEARCH</span><h3>31年来の数学難問KLS予想をAI支援で解決</h3><p>Microsoftの研究者らが、高次元幾何学の未解決問題であるKannan-Lovász-Simonovits（KLS）予想を31年ぶりに解決した。対数凹分布に関する普遍的幾何学的原理を証明したもので、統計・最適化・アルゴリズム・計算機科学に広範な影響が期待される。解決には新たな数学的アイデアと人間主導のAIの組み合わせが活用された。</p><div class="srcs"><a class="src" href="https://www.microsoft.com/en-us/research/blog/solving-a-31-year-old-grand-challenge-in-mathematics-the-kls-conjecture/" target="_blank" rel="noopener">microsoft.com</a></div></article><article class="card" style="--accent:#22d3ee"><span class="tag" style="--accent:#22d3ee">🔬 RESEARCH</span><h3>LLMは理解・制御が容易との新説が注目</h3><p>AIスタートアップGoodfireの研究者Nick Cammarata氏が、LLMは従来考えられていたよりもはるかに理解・監視・制御しやすい可能性があるとする大規模ブログ記事を公開し、広範な議論を呼んでいる。この主張が正しければ、解釈可能性（Interpretability）研究において画期的な前進となる。AI界では慎重な評価と楽観的な見方が交錯している。</p><div class="srcs"><a class="src" href="https://www.technologyreview.com/2026/10/19/1147149/we-were-looking-at-it-wrong-the-explosive-claim-thats-upended-the-ai-world/" target="_blank" rel="noopener">technologyreview.com</a></div></article><article class="card" style="--accent:#f5a524"><span class="tag" style="--accent:#f5a524">💼 BUSINESS</span><h3>OpenAI、1.25兆ドル評価額で300億ドル調達へ</h3><p>OpenAIがIPO前に1.25兆ドル（約185兆円）の評価額で300億ドル（約44兆円）の資金調達を進めていると報じられた。実現すれば史上最高評価額の未公開企業となる。IPOに向けた準備の一環とみられる。</p><div class="srcs"><a class="src" href="https://techcrunch.com/2026/10/22/openai-working-on-new-30b-raise-at-1-25t-valuation-ahead-of-ipo/" target="_blank" rel="noopener">techcrunch.com</a></div></article><article class="card" style="--accent:#f5a524"><span class="tag" style="--accent:#f5a524">💼 BUSINESS</span><h3>OpenAIモデルがGoogle Cloudに提供開始</h3><p>OpenAIとGoogle Cloudが提携し、OpenAIのフロンティアモデルがGoogle CloudのModel Gardenに追加される。さらにGoogleのAIコーディングツール「Antigravity」へのGPTモデル統合、CodexワークフローのGoogle Cloud対応も予定。数週間以内に実装見込みで、ライバル同士の異例の協業として注目を集めている。</p><div class="srcs"><a class="src" href="https://arstechnica.com/ai/2026/10/openais-latest-ai-models-are-coming-to-google-cloud-and-antigravity/" target="_blank" rel="noopener">arstechnica.com</a><a class="src" href="https://openai.com/index/openai-models-google-cloud" target="_blank" rel="noopener">openai.com</a></div></article><article class="card" style="--accent:#f5a524"><span class="tag" style="--accent:#f5a524">💼 BUSINESS</span><h3>DisneyがCharacter.AIを事実上買収、訴訟回避のため破産活用</h3><p>Character.AIが破産申請し、DisneyがCEOを含む大半のスタッフと技術を取得。破産手続きを活用することで、安全性をめぐる複数の訴訟や世界的な規制調査に伴う法的債務をDisneyは回避した。業界の衰退ではなく、Disneyとの取引の一環として戦略的に活用されたとみられる。</p><div class="srcs"><a class="src" href="https://arstechnica.com/tech-policy/2026/10/disney-found-a-way-to-buy-character-ai-without-buying-its-lawsuits/" target="_blank" rel="noopener">arstechnica.com</a></div></article><article class="card" style="--accent:#f5a524"><span class="tag" style="--accent:#f5a524">💼 BUSINESS</span><h3>OpenAIがOrchestra Bioを買収</h3><p>OpenAIがライフサイエンスR&amp;D向けにAI活用業務改善を目的としてOrchestra Bioを買収した。製薬企業の創薬開発加速と新治療法の推進を支援することを目指す。</p><div class="srcs"><a class="src" href="https://openai.com/index/openai-to-acquire-orchestra-bio" target="_blank" rel="noopener">openai.com</a></div></article><article class="card" style="--accent:#f5a524"><span class="tag" style="--accent:#f5a524">💼 BUSINESS</span><h3>MetaとOpenAIのAIエージェント、途上国展開に課題</h3><p>MetaのMuse、OpenAIのDotsなど新世代パーソナルAIエージェントが日常タスクの自動化を標榜するが、インフラや接続環境が整っていないグローバルサウスの地域での大規模展開に技術・社会的な懸念が浮上している。</p><div class="srcs"><a class="src" href="https://restofworld.org/2026/meta-muse-openai-dots-ai-agents-global-south/?utm_source=rss&amp;utm_medium=rss&amp;utm_campaign=feeds" target="_blank" rel="noopener">restofworld.org</a></div></article><article class="card" style="--accent:#f87171"><span class="tag" style="--accent:#f87171">📜 POLICY</span><h3>OpenAI、ライブ学習を廃止へ</h3><p>OpenAIがフロンティアモデルのトレーニングにリアルタイムインターネットを使用しないと発表。理由として「重大なリスク」を公式に挙げている。自社エンジニアが同手法の有効性を否定した直後の方針転換として注目される。</p><div class="srcs"><a class="src" href="https://techcrunch.com/2026/10/23/openai-says-it-will-no-longer-train-its-ai-models-on-the-live-internet-citing-significant-risks/" target="_blank" rel="noopener">techcrunch.com</a></div></article><article class="card" style="--accent:#f87171"><span class="tag" style="--accent:#f87171">📜 POLICY</span><h3>中国系ハッカーがConnectWise侵害でAIエージェントを悪用、数千社を諜報</h3><p>MicrosoftはITサービス大手ConnectWiseへの侵害が中国系ハッカーによるものと断定。攻撃者はAIエージェントを活用して迅速に数千社の顧客システムへ横展開し、大規模スパイ活動を展開した。AIがサイバー攻撃の手段として活用される脅威が現実化した事例として、セキュリティ業界に衝撃を与えている。</p><div class="srcs"><a class="src" href="https://techcrunch.com/2026/10/22/chinese-hackers-spied-on-thousands-of-companies-after-breaching-it-giant-connectwise/" target="_blank" rel="noopener">techcrunch.com</a></div></article><article class="card" style="--accent:#f87171"><span class="tag" style="--accent:#f87171">📜 POLICY</span><h3>OpenAI元エンジニア、サウジ政府向けスパイ疑惑で勾留継続</h3><p>元OpenAIエンジニアのAbdulrahman Alfozan被告が極秘会議室への盗聴器設置・機密情報窃取で起訴された事件で、裁判所が保釈を却下し勾留継続を命じた。FBIは「Saudi Gov Docs」フォルダの発見とサウジ王族とのWhatsAppのやり取りを証拠として提示。検察は個人的利益またはサウジアラビア王国のためのスパイ行為と主張している。</p><div class="srcs"><a class="src" href="https://arstechnica.com/tech-policy/2026/10/accused-openai-spy-had-folder-called-saudi-gov-docs-fbi-says/" target="_blank" rel="noopener">arstechnica.com</a></div></article><article class="card" style="--accent:#f87171"><span class="tag" style="--accent:#f87171">📜 POLICY</span><h3>OpenAIがフロンティアモデル訓練環境のセキュリティを強化</h3><p>OpenAIはフロンティアモデルの訓練・評価環境に対するセキュリティ強化策を公開。オフライン環境の整備と高計算能力を用いたレッドチーミングによる封じ込め措置が柱。同社はサイバー防衛向けAI活用方針「Democratic governance of frontier AI, part II」も併せて公開し、サイバー防衛担当者へのAI支援強化や公共機関のレジリエンス向上を提唱した。</p><div class="srcs"><a class="src" href="https://openai.com/index/securing-our-frontier-model-training-environment" target="_blank" rel="noopener">openai.com</a><a class="src" href="https://openai.com/index/empowering-cyber-defenders" target="_blank" rel="noopener">openai.com</a></div></article><article class="card" style="--accent:#34d399"><span class="tag" style="--accent:#34d399">🛠️ TOOLS</span><h3>SageMakerでマルチターンRL実装ガイド公開</h3><p>AWSがAmazon SageMaker AIでのマルチターン強化学習（MTRL）の実践ガイドを公開。従来のSFTや単一ターンRLでは経費申請・サポートチケット対応などエージェント的タスクの連続行動全体を学習できない課題を解決するアプローチとして、MTRLのハンズオン実装手順を解説している。</p><div class="srcs"><a class="src" href="https://aws.amazon.com/blogs/machine-learning/multi-turn-reinforcement-learning-on-amazon-sagemaker-ai-a-hands-on-guide/" target="_blank" rel="noopener">aws.amazon.com</a></div></article><article class="card" style="--accent:#c084fc"><span class="tag" style="--accent:#c084fc">🌐 OTHER</span><h3>企業AIコスト管理の新たな経済学</h3><p>Databricksが、過去2年間の企業AI導入におけるコスト管理の変化を分析するブログを公開。AI投資対効果の評価軸が変化しつつある現状を論じ、エンタープライズ向けAIコスト最適化の新手法を提示している。</p><div class="srcs"><a class="src" href="https://www.databricks.com/blog/ai-cost-management" target="_blank" rel="noopener">databricks.com</a></div></article></div></section>
-    <footer>自動生成AIニュースダイジェスト · 2026-10-26</footer>
-  </div>
+<div class="layout">
+  <aside class="side">
+    <div class="hd"><div class="brand"><i></i>AI NEWS BRIEFING</div>
+      <h1>AIニュースダイジェスト</h1><div class="meta">2026.10.26（月） · 18トピック · 約6分</div></div>
+    <nav class="chips"><button class="chip" data-f="all" aria-pressed="true">すべて<b>18</b></button><button class="chip pick" data-f="pick" aria-pressed="false">注目<b>5</b></button><button class="chip" data-f="release" aria-pressed="false">🚀 リリース<b>3</b></button><button class="chip" data-f="research" aria-pressed="false">🔬 研究<b>4</b></button><button class="chip" data-f="business" aria-pressed="false">💼 ビジネス<b>5</b></button><button class="chip" data-f="policy" aria-pressed="false">📜 政策<b>4</b></button><button class="chip" data-f="tools" aria-pressed="false">🛠️ ツール<b>1</b></button><button class="chip" data-f="other" aria-pressed="false">🌐 その他<b>1</b></button></nav>
+    <div class="view pc"><button data-v="full" aria-pressed="true">全文</button>
+      <button data-v="compact" aria-pressed="false">コンパクト</button></div>
+    <nav class="toc pc"><div class="side-h">目次</div><div class="toc-g"><div class="toc-h">🚀 リリース</div><a href="#a1" data-id="a1" class="pick"><span class="n">01</span><span class="t">Hugging FaceがDNA言語モデル「Carbon-X」公開</span></a><a href="#a2" data-id="a2"><span class="n">02</span><span class="t">GoogleとMetaがTorchTPUをオープンソース化</span></a><a href="#a3" data-id="a3"><span class="n">03</span><span class="t">NVIDIAがAIエージェント向けセキュリティ基盤「Sentry」と「OpenShell」を発表</span></a></div><div class="toc-g"><div class="toc-h">🔬 研究</div><a href="#a4" data-id="a4"><span class="n">04</span><span class="t">TokenGateがLLMの長文処理を最大11.3倍高速化</span></a><a href="#a5" data-id="a5" class="pick"><span class="n">05</span><span class="t">MicrosoftのAI診断システム、難症例で医師を上回る性能</span></a><a href="#a6" data-id="a6"><span class="n">06</span><span class="t">31年来の数学難問KLS予想をAI支援で解決</span></a><a href="#a7" data-id="a7"><span class="n">07</span><span class="t">LLMは理解・制御が容易との新説が注目</span></a></div><div class="toc-g"><div class="toc-h">💼 ビジネス</div><a href="#a8" data-id="a8" class="pick"><span class="n">08</span><span class="t">OpenAI、1.25兆ドル評価額で300億ドル調達へ</span></a><a href="#a9" data-id="a9"><span class="n">09</span><span class="t">OpenAIモデルがGoogle Cloudに提供開始</span></a><a href="#a10" data-id="a10" class="pick"><span class="n">10</span><span class="t">DisneyがCharacter.AIを事実上買収、訴訟回避のため破産活用</span></a><a href="#a11" data-id="a11"><span class="n">11</span><span class="t">OpenAIがOrchestra Bioを買収</span></a><a href="#a12" data-id="a12"><span class="n">12</span><span class="t">MetaとOpenAIのAIエージェント、途上国展開に課題</span></a></div><div class="toc-g"><div class="toc-h">📜 政策</div><a href="#a13" data-id="a13"><span class="n">13</span><span class="t">OpenAI、ライブ学習を廃止へ</span></a><a href="#a14" data-id="a14" class="pick"><span class="n">14</span><span class="t">中国系ハッカーがConnectWise侵害でAIエージェントを悪用、数千社を諜報</span></a><a href="#a15" data-id="a15"><span class="n">15</span><span class="t">OpenAI元エンジニア、サウジ政府向けスパイ疑惑で勾留継続</span></a><a href="#a16" data-id="a16"><span class="n">16</span><span class="t">OpenAIがフロンティアモデル訓練環境のセキュリティを強化</span></a></div><div class="toc-g"><div class="toc-h">🛠️ ツール</div><a href="#a17" data-id="a17"><span class="n">17</span><span class="t">SageMakerでマルチターンRL実装ガイド公開</span></a></div><div class="toc-g"><div class="toc-h">🌐 その他</div><a href="#a18" data-id="a18"><span class="n">18</span><span class="t">企業AIコスト管理の新たな経済学</span></a></div></nav>
+    <div class="keys pc"><kbd>j</kbd><kbd>k</kbd> 次・前の記事　<kbd>o</kbd> 元記事を開く<br>
+      <kbd>f</kbd> 注目のみ　<kbd>v</kbd> 全文／コンパクト
+      <a class="archive" href="../">過去のダイジェスト →</a></div>
+  </aside>
+  <main class="main">
+    <section class="tldr"><h2>⚡ 30秒でわかる今日のポイント</h2><ul><li><a class="hl" href="#a8"><span><strong>OpenAI</strong>が1.25兆ドル評価額での300億ドル調達を進めつつ、Google Cloudへのモデル提供・Orchestra Bio買収・ライブ学習廃止と怒涛の動き</span></a></li><li><a class="hl" href="#a10"><span><strong>Disney</strong>がCharacter.AIを破産スキームを活用して事実上買収、訴訟リスクを巧みに回避</span></a></li><li><a class="hl" href="#a5"><span><strong>Microsoft</strong>のAI診断システムが難症例で一般科医を上回る性能をScience誌に発表、「医療超知性」を標榜</span></a></li><li><a class="hl" href="#a1"><span><strong>Hugging Face</strong>が148億パラメータのDNA言語モデル「Carbon-X」をオープンソース公開、バイオ医療AIに新局面</span></a></li><li><a class="hl" href="#a14"><span>中国系ハッカーがAIエージェントを悪用しConnectWise経由で数千社をスパイ、サプライチェーン攻撃が深刻化</span></a></li></ul></section>
+    <div class="groups"><section class="grp"><h2 class="grp-h">🚀 モデル・製品リリース<span>3件</span></h2><div class="list"><details id="a1" data-cat="release" data-pick="1" style="--accent:#7c8cff"><summary><div class="row-meta"><span class="num">01</span><span class="dot"></span>リリース<span class="badge">注目</span><span class="dom">marktechpost.com</span></div><h3>Hugging FaceがDNA言語モデル「Carbon-X」公開</h3><p class="preview">Hugging Faceが148億パラメータのオープンなDNA言語モデル「Carbon-X」をリリースした。デコーダーのみのアーキテクチャで、生のDNA配列をチャット形式で入力し英語で回答する。変異の病原性予測、調節領域の特定、生物分類、次の塩基予測などが可能。中関村アカデミーおよびナポリ・フェデリコII世大学との共同開発で、Apache 2.0ライセンスで公開。コンテキスト長は40,960トークンで、80GB GPU×1台で動作可能。DNAと自然言語を統合した初のモデルとして注目される。</p></summary><div class="more"><p>Hugging Faceが148億パラメータのオープンなDNA言語モデル「Carbon-X」をリリースした。デコーダーのみのアーキテクチャで、生のDNA配列をチャット形式で入力し英語で回答する。変異の病原性予測、調節領域の特定、生物分類、次の塩基予測などが可能。中関村アカデミーおよびナポリ・フェデリコII世大学との共同開発で、Apache 2.0ライセンスで公開。コンテキスト長は40,960トークンで、80GB GPU×1台で動作可能。DNAと自然言語を統合した初のモデルとして注目される。</p><div class="btns"><a class="btn" href="https://www.marktechpost.com/2026/10/25/hugging-face-carbon-x-14b-dna-language-model/" target="_blank" rel="noopener">元記事 ↗ <small>marktechpost.com</small></a></div></div></details><details id="a2" data-cat="release" data-pick="0" style="--accent:#7c8cff"><summary><div class="row-meta"><span class="num">02</span><span class="dot"></span>リリース<span class="dom">infoq.com</span></div><h3>GoogleとMetaがTorchTPUをオープンソース化</h3><p class="preview">PyTorch Conference North America 2026にて、GoogleのTPU向けネイティブPyTorchバックエンド「TorchTPU」がオープンソース化された。MetaはLLMワークロードのTPU移行への活用を発表。同週にAWSもTrainium向け「TorchNeuron」をリリースしており、AIアクセラレータのPyTorchエコシステム統合競争が加速している。</p></summary><div class="more"><p>PyTorch Conference North America 2026にて、GoogleのTPU向けネイティブPyTorchバックエンド「TorchTPU」がオープンソース化された。MetaはLLMワークロードのTPU移行への活用を発表。同週にAWSもTrainium向け「TorchNeuron」をリリースしており、AIアクセラレータのPyTorchエコシステム統合競争が加速している。</p><div class="btns"><a class="btn" href="https://www.infoq.com/news/2026/10/google-meta-torchtpu/?utm_campaign=infoq_content&amp;utm_source=infoq&amp;utm_medium=feed&amp;utm_term=AI%2C+ML+%26+Data+Engineering" target="_blank" rel="noopener">元記事 ↗ <small>infoq.com</small></a></div></div></details><details id="a3" data-cat="release" data-pick="0" style="--accent:#7c8cff"><summary><div class="row-meta"><span class="num">03</span><span class="dot"></span>リリース<span class="dom">developer.nvidia.com +1</span></div><h3>NVIDIAがAIエージェント向けセキュリティ基盤「Sentry」と「OpenShell」を発表</h3><p class="preview">NVIDIAはAIエージェントの実行時セキュリティを確保するフレームワーク「NVIDIA Sentry」と、自律型AIエージェントのワークロードを大規模に統制するリファレンスアーキテクチャ「OpenShell」を相次いで発表した。Sentryはエージェントの制御外で監視・強制執行を行い無効化を防ぐ設計。OpenShellはコード取得・ツール生成・特権要求など複合的リスクへのガバナンスを提供する。AIエージェントの普及に伴うセキュリティ需要の高まりへの対応として位置付けられる。</p></summary><div class="more"><p>NVIDIAはAIエージェントの実行時セキュリティを確保するフレームワーク「NVIDIA Sentry」と、自律型AIエージェントのワークロードを大規模に統制するリファレンスアーキテクチャ「OpenShell」を相次いで発表した。Sentryはエージェントの制御外で監視・強制執行を行い無効化を防ぐ設計。OpenShellはコード取得・ツール生成・特権要求など複合的リスクへのガバナンスを提供する。AIエージェントの普及に伴うセキュリティ需要の高まりへの対応として位置付けられる。</p><div class="btns"><a class="btn" href="https://developer.nvidia.com/blog/inside-nvidia-sentry-secure-ai-agents-at-runtime/" target="_blank" rel="noopener">元記事 ↗ <small>developer.nvidia.com</small></a><a class="btn" href="https://developer.nvidia.com/blog/how-nvidia-openshell-reference-architecture-secures-and-governs-ai-agent-workloads-at-scale/" target="_blank" rel="noopener">元記事 ↗ <small>developer.nvidia.com</small></a></div></div></details></div></section><section class="grp"><h2 class="grp-h">🔬 研究・論文<span>4件</span></h2><div class="list"><details id="a4" data-cat="research" data-pick="0" style="--accent:#22d3ee"><summary><div class="row-meta"><span class="num">04</span><span class="dot"></span>研究<span class="dom">marktechpost.com</span></div><h3>TokenGateがLLMの長文処理を最大11.3倍高速化</h3><p class="preview">スタンフォード大学とUCバークレーの研究者が、LLMの長文プリフィル処理を高速化するモジュール「TokenGate」を発表。学習済みトークン枝刈りにより重要なトークンのみを完全処理し、精度を落とさずにTTFT（初回トークン出力時間）を最大11.3倍短縮、ピーク時プリフィルメモリを最大3.4倍削減する。小型MLPゲートとLoRA（r=16）を追加するだけで既存LLMに適用可能で、Qwen3-1.7B/Qwen3.5-2Bにて128kトークンまで検証済み。Apache-2.0でOSS公開。</p></summary><div class="more"><p>スタンフォード大学とUCバークレーの研究者が、LLMの長文プリフィル処理を高速化するモジュール「TokenGate」を発表。学習済みトークン枝刈りにより重要なトークンのみを完全処理し、精度を落とさずにTTFT（初回トークン出力時間）を最大11.3倍短縮、ピーク時プリフィルメモリを最大3.4倍削減する。小型MLPゲートとLoRA（r=16）を追加するだけで既存LLMに適用可能で、Qwen3-1.7B/Qwen3.5-2Bにて128kトークンまで検証済み。Apache-2.0でOSS公開。</p><div class="btns"><a class="btn" href="https://www.marktechpost.com/2026/10/25/stanford-berkeley-tokengate-learned-token-pruning-llm-prefill/" target="_blank" rel="noopener">元記事 ↗ <small>marktechpost.com</small></a></div></div></details><details id="a5" data-cat="research" data-pick="1" style="--accent:#22d3ee"><summary><div class="row-meta"><span class="num">05</span><span class="dot"></span>研究<span class="badge">注目</span><span class="dom">techcrunch.com</span></div><h3>MicrosoftのAI診断システム、難症例で医師を上回る性能</h3><p class="preview">MicrosoftのCEO Mustafa Suleiman氏が、同社のAI診断システムが困難な症例において一般科医を上回る性能を示したと発表。科学誌Scienceに掲載された研究に基づく成果。ただし性能向上の主因はMicrosoft独自のシステムより基盤モデルにあるとも指摘されている。同氏は「医療超知性（medical superintelligence）」の実現を目標として掲げている。</p></summary><div class="more"><p>MicrosoftのCEO Mustafa Suleiman氏が、同社のAI診断システムが困難な症例において一般科医を上回る性能を示したと発表。科学誌Scienceに掲載された研究に基づく成果。ただし性能向上の主因はMicrosoft独自のシステムより基盤モデルにあるとも指摘されている。同氏は「医療超知性（medical superintelligence）」の実現を目標として掲げている。</p><div class="btns"><a class="btn" href="https://techcrunch.com/2026/10/22/microsofts-mustafa-suleyman-says-its-ai-outperforms-doctors-on-hard-cases-as-he-chases-medical-superintelligence/" target="_blank" rel="noopener">元記事 ↗ <small>techcrunch.com</small></a></div></div></details><details id="a6" data-cat="research" data-pick="0" style="--accent:#22d3ee"><summary><div class="row-meta"><span class="num">06</span><span class="dot"></span>研究<span class="dom">microsoft.com</span></div><h3>31年来の数学難問KLS予想をAI支援で解決</h3><p class="preview">Microsoftの研究者らが、高次元幾何学の未解決問題であるKannan-Lovász-Simonovits（KLS）予想を31年ぶりに解決した。対数凹分布に関する普遍的幾何学的原理を証明したもので、統計・最適化・アルゴリズム・計算機科学に広範な影響が期待される。解決には新たな数学的アイデアと人間主導のAIの組み合わせが活用された。</p></summary><div class="more"><p>Microsoftの研究者らが、高次元幾何学の未解決問題であるKannan-Lovász-Simonovits（KLS）予想を31年ぶりに解決した。対数凹分布に関する普遍的幾何学的原理を証明したもので、統計・最適化・アルゴリズム・計算機科学に広範な影響が期待される。解決には新たな数学的アイデアと人間主導のAIの組み合わせが活用された。</p><div class="btns"><a class="btn" href="https://www.microsoft.com/en-us/research/blog/solving-a-31-year-old-grand-challenge-in-mathematics-the-kls-conjecture/" target="_blank" rel="noopener">元記事 ↗ <small>microsoft.com</small></a></div></div></details><details id="a7" data-cat="research" data-pick="0" style="--accent:#22d3ee"><summary><div class="row-meta"><span class="num">07</span><span class="dot"></span>研究<span class="dom">technologyreview.com</span></div><h3>LLMは理解・制御が容易との新説が注目</h3><p class="preview">AIスタートアップGoodfireの研究者Nick Cammarata氏が、LLMは従来考えられていたよりもはるかに理解・監視・制御しやすい可能性があるとする大規模ブログ記事を公開し、広範な議論を呼んでいる。この主張が正しければ、解釈可能性（Interpretability）研究において画期的な前進となる。AI界では慎重な評価と楽観的な見方が交錯している。</p></summary><div class="more"><p>AIスタートアップGoodfireの研究者Nick Cammarata氏が、LLMは従来考えられていたよりもはるかに理解・監視・制御しやすい可能性があるとする大規模ブログ記事を公開し、広範な議論を呼んでいる。この主張が正しければ、解釈可能性（Interpretability）研究において画期的な前進となる。AI界では慎重な評価と楽観的な見方が交錯している。</p><div class="btns"><a class="btn" href="https://www.technologyreview.com/2026/10/19/1147149/we-were-looking-at-it-wrong-the-explosive-claim-thats-upended-the-ai-world/" target="_blank" rel="noopener">元記事 ↗ <small>technologyreview.com</small></a></div></div></details></div></section><section class="grp"><h2 class="grp-h">💼 業界・ビジネス<span>5件</span></h2><div class="list"><details id="a8" data-cat="business" data-pick="1" style="--accent:#f5a524"><summary><div class="row-meta"><span class="num">08</span><span class="dot"></span>ビジネス<span class="badge">注目</span><span class="dom">techcrunch.com</span></div><h3>OpenAI、1.25兆ドル評価額で300億ドル調達へ</h3><p class="preview">OpenAIがIPO前に1.25兆ドル（約185兆円）の評価額で300億ドル（約44兆円）の資金調達を進めていると報じられた。実現すれば史上最高評価額の未公開企業となる。IPOに向けた準備の一環とみられる。</p></summary><div class="more"><p>OpenAIがIPO前に1.25兆ドル（約185兆円）の評価額で300億ドル（約44兆円）の資金調達を進めていると報じられた。実現すれば史上最高評価額の未公開企業となる。IPOに向けた準備の一環とみられる。</p><div class="btns"><a class="btn" href="https://techcrunch.com/2026/10/22/openai-working-on-new-30b-raise-at-1-25t-valuation-ahead-of-ipo/" target="_blank" rel="noopener">元記事 ↗ <small>techcrunch.com</small></a></div></div></details><details id="a9" data-cat="business" data-pick="0" style="--accent:#f5a524"><summary><div class="row-meta"><span class="num">09</span><span class="dot"></span>ビジネス<span class="dom">arstechnica.com +1</span></div><h3>OpenAIモデルがGoogle Cloudに提供開始</h3><p class="preview">OpenAIとGoogle Cloudが提携し、OpenAIのフロンティアモデルがGoogle CloudのModel Gardenに追加される。さらにGoogleのAIコーディングツール「Antigravity」へのGPTモデル統合、CodexワークフローのGoogle Cloud対応も予定。数週間以内に実装見込みで、ライバル同士の異例の協業として注目を集めている。</p></summary><div class="more"><p>OpenAIとGoogle Cloudが提携し、OpenAIのフロンティアモデルがGoogle CloudのModel Gardenに追加される。さらにGoogleのAIコーディングツール「Antigravity」へのGPTモデル統合、CodexワークフローのGoogle Cloud対応も予定。数週間以内に実装見込みで、ライバル同士の異例の協業として注目を集めている。</p><div class="btns"><a class="btn" href="https://arstechnica.com/ai/2026/10/openais-latest-ai-models-are-coming-to-google-cloud-and-antigravity/" target="_blank" rel="noopener">元記事 ↗ <small>arstechnica.com</small></a><a class="btn" href="https://openai.com/index/openai-models-google-cloud" target="_blank" rel="noopener">元記事 ↗ <small>openai.com</small></a></div></div></details><details id="a10" data-cat="business" data-pick="1" style="--accent:#f5a524"><summary><div class="row-meta"><span class="num">10</span><span class="dot"></span>ビジネス<span class="badge">注目</span><span class="dom">arstechnica.com</span></div><h3>DisneyがCharacter.AIを事実上買収、訴訟回避のため破産活用</h3><p class="preview">Character.AIが破産申請し、DisneyがCEOを含む大半のスタッフと技術を取得。破産手続きを活用することで、安全性をめぐる複数の訴訟や世界的な規制調査に伴う法的債務をDisneyは回避した。業界の衰退ではなく、Disneyとの取引の一環として戦略的に活用されたとみられる。</p></summary><div class="more"><p>Character.AIが破産申請し、DisneyがCEOを含む大半のスタッフと技術を取得。破産手続きを活用することで、安全性をめぐる複数の訴訟や世界的な規制調査に伴う法的債務をDisneyは回避した。業界の衰退ではなく、Disneyとの取引の一環として戦略的に活用されたとみられる。</p><div class="btns"><a class="btn" href="https://arstechnica.com/tech-policy/2026/10/disney-found-a-way-to-buy-character-ai-without-buying-its-lawsuits/" target="_blank" rel="noopener">元記事 ↗ <small>arstechnica.com</small></a></div></div></details><details id="a11" data-cat="business" data-pick="0" style="--accent:#f5a524"><summary><div class="row-meta"><span class="num">11</span><span class="dot"></span>ビジネス<span class="dom">openai.com</span></div><h3>OpenAIがOrchestra Bioを買収</h3><p class="preview">OpenAIがライフサイエンスR&amp;D向けにAI活用業務改善を目的としてOrchestra Bioを買収した。製薬企業の創薬開発加速と新治療法の推進を支援することを目指す。</p></summary><div class="more"><p>OpenAIがライフサイエンスR&amp;D向けにAI活用業務改善を目的としてOrchestra Bioを買収した。製薬企業の創薬開発加速と新治療法の推進を支援することを目指す。</p><div class="btns"><a class="btn" href="https://openai.com/index/openai-to-acquire-orchestra-bio" target="_blank" rel="noopener">元記事 ↗ <small>openai.com</small></a></div></div></details><details id="a12" data-cat="business" data-pick="0" style="--accent:#f5a524"><summary><div class="row-meta"><span class="num">12</span><span class="dot"></span>ビジネス<span class="dom">restofworld.org</span></div><h3>MetaとOpenAIのAIエージェント、途上国展開に課題</h3><p class="preview">MetaのMuse、OpenAIのDotsなど新世代パーソナルAIエージェントが日常タスクの自動化を標榜するが、インフラや接続環境が整っていないグローバルサウスの地域での大規模展開に技術・社会的な懸念が浮上している。</p></summary><div class="more"><p>MetaのMuse、OpenAIのDotsなど新世代パーソナルAIエージェントが日常タスクの自動化を標榜するが、インフラや接続環境が整っていないグローバルサウスの地域での大規模展開に技術・社会的な懸念が浮上している。</p><div class="btns"><a class="btn" href="https://restofworld.org/2026/meta-muse-openai-dots-ai-agents-global-south/?utm_source=rss&amp;utm_medium=rss&amp;utm_campaign=feeds" target="_blank" rel="noopener">元記事 ↗ <small>restofworld.org</small></a></div></div></details></div></section><section class="grp"><h2 class="grp-h">📜 政策・倫理<span>4件</span></h2><div class="list"><details id="a13" data-cat="policy" data-pick="0" style="--accent:#f87171"><summary><div class="row-meta"><span class="num">13</span><span class="dot"></span>政策<span class="dom">techcrunch.com</span></div><h3>OpenAI、ライブ学習を廃止へ</h3><p class="preview">OpenAIがフロンティアモデルのトレーニングにリアルタイムインターネットを使用しないと発表。理由として「重大なリスク」を公式に挙げている。自社エンジニアが同手法の有効性を否定した直後の方針転換として注目される。</p></summary><div class="more"><p>OpenAIがフロンティアモデルのトレーニングにリアルタイムインターネットを使用しないと発表。理由として「重大なリスク」を公式に挙げている。自社エンジニアが同手法の有効性を否定した直後の方針転換として注目される。</p><div class="btns"><a class="btn" href="https://techcrunch.com/2026/10/23/openai-says-it-will-no-longer-train-its-ai-models-on-the-live-internet-citing-significant-risks/" target="_blank" rel="noopener">元記事 ↗ <small>techcrunch.com</small></a></div></div></details><details id="a14" data-cat="policy" data-pick="1" style="--accent:#f87171"><summary><div class="row-meta"><span class="num">14</span><span class="dot"></span>政策<span class="badge">注目</span><span class="dom">techcrunch.com</span></div><h3>中国系ハッカーがConnectWise侵害でAIエージェントを悪用、数千社を諜報</h3><p class="preview">MicrosoftはITサービス大手ConnectWiseへの侵害が中国系ハッカーによるものと断定。攻撃者はAIエージェントを活用して迅速に数千社の顧客システムへ横展開し、大規模スパイ活動を展開した。AIがサイバー攻撃の手段として活用される脅威が現実化した事例として、セキュリティ業界に衝撃を与えている。</p></summary><div class="more"><p>MicrosoftはITサービス大手ConnectWiseへの侵害が中国系ハッカーによるものと断定。攻撃者はAIエージェントを活用して迅速に数千社の顧客システムへ横展開し、大規模スパイ活動を展開した。AIがサイバー攻撃の手段として活用される脅威が現実化した事例として、セキュリティ業界に衝撃を与えている。</p><div class="btns"><a class="btn" href="https://techcrunch.com/2026/10/22/chinese-hackers-spied-on-thousands-of-companies-after-breaching-it-giant-connectwise/" target="_blank" rel="noopener">元記事 ↗ <small>techcrunch.com</small></a></div></div></details><details id="a15" data-cat="policy" data-pick="0" style="--accent:#f87171"><summary><div class="row-meta"><span class="num">15</span><span class="dot"></span>政策<span class="dom">arstechnica.com</span></div><h3>OpenAI元エンジニア、サウジ政府向けスパイ疑惑で勾留継続</h3><p class="preview">元OpenAIエンジニアのAbdulrahman Alfozan被告が極秘会議室への盗聴器設置・機密情報窃取で起訴された事件で、裁判所が保釈を却下し勾留継続を命じた。FBIは「Saudi Gov Docs」フォルダの発見とサウジ王族とのWhatsAppのやり取りを証拠として提示。検察は個人的利益またはサウジアラビア王国のためのスパイ行為と主張している。</p></summary><div class="more"><p>元OpenAIエンジニアのAbdulrahman Alfozan被告が極秘会議室への盗聴器設置・機密情報窃取で起訴された事件で、裁判所が保釈を却下し勾留継続を命じた。FBIは「Saudi Gov Docs」フォルダの発見とサウジ王族とのWhatsAppのやり取りを証拠として提示。検察は個人的利益またはサウジアラビア王国のためのスパイ行為と主張している。</p><div class="btns"><a class="btn" href="https://arstechnica.com/tech-policy/2026/10/accused-openai-spy-had-folder-called-saudi-gov-docs-fbi-says/" target="_blank" rel="noopener">元記事 ↗ <small>arstechnica.com</small></a></div></div></details><details id="a16" data-cat="policy" data-pick="0" style="--accent:#f87171"><summary><div class="row-meta"><span class="num">16</span><span class="dot"></span>政策<span class="dom">openai.com +1</span></div><h3>OpenAIがフロンティアモデル訓練環境のセキュリティを強化</h3><p class="preview">OpenAIはフロンティアモデルの訓練・評価環境に対するセキュリティ強化策を公開。オフライン環境の整備と高計算能力を用いたレッドチーミングによる封じ込め措置が柱。同社はサイバー防衛向けAI活用方針「Democratic governance of frontier AI, part II」も併せて公開し、サイバー防衛担当者へのAI支援強化や公共機関のレジリエンス向上を提唱した。</p></summary><div class="more"><p>OpenAIはフロンティアモデルの訓練・評価環境に対するセキュリティ強化策を公開。オフライン環境の整備と高計算能力を用いたレッドチーミングによる封じ込め措置が柱。同社はサイバー防衛向けAI活用方針「Democratic governance of frontier AI, part II」も併せて公開し、サイバー防衛担当者へのAI支援強化や公共機関のレジリエンス向上を提唱した。</p><div class="btns"><a class="btn" href="https://openai.com/index/securing-our-frontier-model-training-environment" target="_blank" rel="noopener">元記事 ↗ <small>openai.com</small></a><a class="btn" href="https://openai.com/index/empowering-cyber-defenders" target="_blank" rel="noopener">元記事 ↗ <small>openai.com</small></a></div></div></details></div></section><section class="grp"><h2 class="grp-h">🛠️ ツール・チュートリアル<span>1件</span></h2><div class="list"><details id="a17" data-cat="tools" data-pick="0" style="--accent:#34d399"><summary><div class="row-meta"><span class="num">17</span><span class="dot"></span>ツール<span class="dom">aws.amazon.com</span></div><h3>SageMakerでマルチターンRL実装ガイド公開</h3><p class="preview">AWSがAmazon SageMaker AIでのマルチターン強化学習（MTRL）の実践ガイドを公開。従来のSFTや単一ターンRLでは経費申請・サポートチケット対応などエージェント的タスクの連続行動全体を学習できない課題を解決するアプローチとして、MTRLのハンズオン実装手順を解説している。</p></summary><div class="more"><p>AWSがAmazon SageMaker AIでのマルチターン強化学習（MTRL）の実践ガイドを公開。従来のSFTや単一ターンRLでは経費申請・サポートチケット対応などエージェント的タスクの連続行動全体を学習できない課題を解決するアプローチとして、MTRLのハンズオン実装手順を解説している。</p><div class="btns"><a class="btn" href="https://aws.amazon.com/blogs/machine-learning/multi-turn-reinforcement-learning-on-amazon-sagemaker-ai-a-hands-on-guide/" target="_blank" rel="noopener">元記事 ↗ <small>aws.amazon.com</small></a></div></div></details></div></section><section class="grp"><h2 class="grp-h">🌐 その他<span>1件</span></h2><div class="list"><details id="a18" data-cat="other" data-pick="0" style="--accent:#c084fc"><summary><div class="row-meta"><span class="num">18</span><span class="dot"></span>その他<span class="dom">databricks.com</span></div><h3>企業AIコスト管理の新たな経済学</h3><p class="preview">Databricksが、過去2年間の企業AI導入におけるコスト管理の変化を分析するブログを公開。AI投資対効果の評価軸が変化しつつある現状を論じ、エンタープライズ向けAIコスト最適化の新手法を提示している。</p></summary><div class="more"><p>Databricksが、過去2年間の企業AI導入におけるコスト管理の変化を分析するブログを公開。AI投資対効果の評価軸が変化しつつある現状を論じ、エンタープライズ向けAIコスト最適化の新手法を提示している。</p><div class="btns"><a class="btn" href="https://www.databricks.com/blog/ai-cost-management" target="_blank" rel="noopener">元記事 ↗ <small>databricks.com</small></a></div></div></details></div></section></div>
+    <footer>自動生成AIニュースダイジェスト · 2026-10-26 · <a href="../">過去のダイジェスト</a></footer>
+  </main>
+</div>
+<script>
+const $=s=>[...document.querySelectorAll(s)];
+const chips=$('.chip'),rows=$('details'),groups=$('.grp'),toc=$('.toc a'),tocG=$('.toc-g'),
+      views=$('.view button'),side=document.querySelector('.side'),
+      desk=matchMedia('(min-width:1024px)');
+let cur=null;
+
+function setView(v){rows.forEach(r=>r.open=v==='full');views.forEach(b=>b.setAttribute('aria-pressed',b.dataset.v===v));}
+if(desk.matches)setView('full');
+desk.addEventListener('change',e=>setView(e.matches?'full':'compact'));
+
+function filter(f){
+  chips.forEach(x=>x.setAttribute('aria-pressed',x.dataset.f===f));
+  rows.forEach(r=>r.hidden=!(f==='all'||(f==='pick'?r.dataset.pick==='1':r.dataset.cat===f)));
+  groups.forEach(g=>{const n=g.querySelectorAll('details:not([hidden])').length;
+    g.hidden=!n;g.querySelector('.grp-h span').textContent=n+'件';});
+  toc.forEach(a=>a.hidden=document.getElementById(a.dataset.id).hidden);
+  tocG.forEach(g=>g.hidden=!g.querySelector('a:not([hidden])'));
+  spy();
+}
+chips.forEach(c=>c.addEventListener('click',()=>filter(c.dataset.f)));
+views.forEach(b=>b.addEventListener('click',()=>setView(b.dataset.v)));
+
+// While a jump (j/k, 目次, ポイント) settles, the scroll spy must not overwrite
+// the target with whatever article happens to be under the reading line.
+let lock=false,lockT=0,pre=true;
+function unlockSoon(ms){clearTimeout(lockT);lockT=setTimeout(()=>{lock=false;},ms);}
+addEventListener('scrollend',()=>{if(lock)unlockSoon(60);});
+function go(el){
+  if(!el)return;
+  if(el.hidden)filter('all');
+  el.open=true;
+  lock=true;pre=false;unlockSoon(1000);
+  el.scrollIntoView({block:'start',behavior:'instant'});
+  el.classList.remove('flash');void el.offsetWidth;el.classList.add('flash');
+  mark(el);
+}
+document.addEventListener('click',e=>{
+  const a=e.target.closest('a[href^="#a"]');if(!a)return;
+  e.preventDefault();go(document.querySelector(a.getAttribute('href')));
+});
+
+function keepVisible(a){
+  if(!desk.matches||!a)return;
+  const s=side.getBoundingClientRect(),r=a.getBoundingClientRect();
+  if(r.top<s.top+80)side.scrollTop-=s.top+80-r.top;
+  else if(r.bottom>s.bottom-24)side.scrollTop+=r.bottom-(s.bottom-24);
+}
+function mark(el){
+  if(!el||el===cur)return;cur=el;
+  rows.forEach(r=>r.classList.toggle('cur',r===el));
+  let on=null;toc.forEach(a=>{const m=a.dataset.id===el.id;a.classList.toggle('on',m);if(m)on=a;});
+  keepVisible(on);
+}
+function spy(){
+  if(lock)return;
+  const vis=rows.filter(r=>!r.hidden);if(!vis.length)return;
+  // Near the page bottom the last articles can't reach the top; keep the
+  // current one if it is still on screen.
+  const atBottom=scrollY+innerHeight>=document.documentElement.scrollHeight-4;
+  if(atBottom&&cur&&!cur.hidden&&cur.getBoundingClientRect().top<innerHeight)return;
+  // The article being read = the last one whose top has passed the reading line.
+  let c=null;for(const r of vis){if(r.getBoundingClientRect().top<=120)c=r;else break;}
+  pre=!c;mark(c||vis[0]);
+}
+let ticking=false;
+addEventListener('scroll',()=>{if(!ticking){ticking=true;requestAnimationFrame(()=>{spy();ticking=false;});}},{passive:true});
+spy();
+
+addEventListener('keydown',e=>{
+  if(e.metaKey||e.ctrlKey||e.altKey||/^(input|textarea|select)$/i.test(e.target.tagName))return;
+  const vis=rows.filter(r=>!r.hidden),i=pre?-1:vis.indexOf(cur);
+  if(e.key==='j')go(vis[Math.min(i+1,vis.length-1)]);
+  else if(e.key==='k')go(vis[Math.max(i-1,0)]);
+  else if(e.key==='o'&&cur){const b=cur.querySelector('.btn');if(b)window.open(b.href,'_blank','noopener');}
+  else if(e.key==='v')setView(views[0].getAttribute('aria-pressed')==='true'?'compact':'full');
+  else if(e.key==='f'){const p=chips.find(c=>c.dataset.f==='pick');if(!p)return;
+    filter(p.getAttribute('aria-pressed')==='true'?'all':'pick');}
+  else return;
+  e.preventDefault();
+});
+</script>
 </body>
 </html>

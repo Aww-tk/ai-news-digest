@@ -3,34 +3,31 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>AI News Digest Archive</title>
+<title>AIニュースダイジェスト アーカイブ</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Noto+Sans+JP:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
-  body { font-family: system-ui, -apple-system, "Segoe UI", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
-    background: #0b0e13; color: #eef2f6; max-width: 640px; margin: 0 auto; padding: 32px 20px; }
-  h1 { font-size: 22px; }
-  ul { list-style: none; padding: 0; }
-  li { border-bottom: 1px solid #232c38; }
-  a { display: block; padding: 14px 4px; color: #eef2f6; text-decoration: none; }
-  a:hover { color: #7c8cff; }
+:root{--bg:#f3f5f9;--card:#fff;--ink:#0f172a;--muted:#64748b;--line:#e3e8ef;--brand:#4f46e5;
+  --brand-soft:#eef0ff;--font:"Inter","Noto Sans JP",system-ui,-apple-system,"Hiragino Kaku Gothic ProN",Meiryo,sans-serif}
+@media (prefers-color-scheme:dark){:root{--bg:#0a0f1c;--card:#111827;--ink:#e7ebf3;--muted:#8c98ad;
+  --line:#1f2937;--brand:#8b93ff;--brand-soft:#1b1f3d}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);line-height:1.7;
+  -webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:720px;margin:0 auto;padding:40px 16px 80px}
+.brand{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.12em;color:var(--brand)}
+.brand i{width:8px;height:8px;border-radius:50%;background:var(--brand)}
+h1{font-size:26px;margin:8px 0 4px;font-weight:800}
+.meta{font-size:13px;color:var(--muted);margin-bottom:28px}
+h2{font-size:13px;font-weight:700;color:var(--muted);letter-spacing:.06em;margin:28px 2px 10px}
+ul{list-style:none;margin:0;padding:0;background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+li+li{border-top:1px solid var(--line)}
+li a{display:flex;align-items:center;gap:10px;padding:14px 18px;font-size:15px;font-weight:600;
+  font-variant-numeric:tabular-nums;transition:background .15s}
+li a:hover{background:var(--brand-soft);color:var(--brand)}
+li a::after{content:"→";margin-left:auto;color:var(--muted)}
+.new{font-size:11px;font-weight:700;color:var(--brand);background:var(--brand-soft);padding:1px 8px;border-radius:6px}
 </style>
 </head>
-<body>
-  <h1>AI News Digest アーカイブ</h1>
-  <ul>
-    <li><a href="digests/2026-11-25.html">2026-11-25</a></li>
-    <li><a href="digests/2026-11-23.html">2026-11-23</a></li>
-    <li><a href="digests/2026-11-16.html">2026-11-16</a></li>
-    <li><a href="digests/2026-11-09.html">2026-11-09</a></li>
-    <li><a href="digests/2026-11-02.html">2026-11-02</a></li>
-    <li><a href="digests/2026-10-26.html">2026-10-26</a></li>
-    <li><a href="digests/2026-10-19.html">2026-10-19</a></li>
-    <li><a href="digests/2026-10-13.html">2026-10-13</a></li>
-    <li><a href="digests/2026-10-05.html">2026-10-05</a></li>
-    <li><a href="digests/2026-09-23.html">2026-09-23</a></li>
-    <li><a href="digests/2026-09-14.html">2026-09-14</a></li>
-    <li><a href="digests/2026-09-07.html">2026-09-07</a></li>
-    <li><a href="digests/2026-08-31.html">2026-08-31</a></li>
-    <li><a href="digests/2026-08-17.html">2026-08-17</a></li>
-  </ul>
-</body>
+<body><div class="wrap"><div class="brand"><i></i>AI NEWS BRIEFING</div><h1>過去のダイジェスト</h1><div class="meta">14日分</div><h2>2026年11月</h2><ul><li><a href="digests/2026-11-25.html">2026.11.25（水）<span class=new>最新</span></a></li><li><a href="digests/2026-11-23.html">2026.11.23（月）</a></li><li><a href="digests/2026-11-16.html">2026.11.16（月）</a></li><li><a href="digests/2026-11-09.html">2026.11.09（月）</a></li><li><a href="digests/2026-11-02.html">2026.11.02（月）</a></li></ul><h2>2026年10月</h2><ul><li><a href="digests/2026-10-26.html">2026.10.26（月）</a></li><li><a href="digests/2026-10-19.html">2026.10.19（月）</a></li><li><a href="digests/2026-10-13.html">2026.10.13（火）</a></li><li><a href="digests/2026-10-05.html">2026.10.05（月）</a></li></ul><h2>2026年9月</h2><ul><li><a href="digests/2026-09-23.html">2026.09.23（水）</a></li><li><a href="digests/2026-09-14.html">2026.09.14（月）</a></li><li><a href="digests/2026-09-07.html">2026.09.07（月）</a></li></ul><h2>2026年8月</h2><ul><li><a href="digests/2026-08-31.html">2026.08.31（月）</a></li><li><a href="digests/2026-08-17.html">2026.08.17（月）</a></li></ul></div></body>
 </html>
